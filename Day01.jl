@@ -148,19 +148,14 @@ function part_one(lhs::Vector{Int64}, rhs::Vector{Int64})
 end
 
 function part_two(lhs::Vector{Int64}, rhs::Vector{Int64})
-    similarity = Vector{Int64}()
-    for i ∈ lhs
-        push!(similarity, i * length(findall(x->x == i, rhs)))
-    end
-    println(string("Part Two: ", sum(similarity)))
+    println(string("Part Two: ", sum(map(l->l * length(findall(r->r == l, rhs)), lhs))))
 end
-
-
 
 #(lhs, rhs) = read_data("Day01-test.txt")
 (lhs, rhs) = read_data("Day01-data.txt")
 part_one(lhs, rhs)
 part_two(lhs, rhs)
+
 
 
 
