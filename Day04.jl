@@ -94,28 +94,20 @@ Both parts of this puzzle are complete! They provide two gold stars: **
 =#
 
 function read_data(path::String)
-    input = open(path) do file
-        read(file, String)
-    end
-    lines = split(input, "\n")
-    grid = fill(' ', length(lines), length(lines[1]))
-    for y ∈ eachindex(lines)
-        for x ∈ eachindex(lines[y])
-            grid[y, x] = lines[y][x]
-        end
-    end
-    return grid
+    lines = readlines(path)
+    return [lines[y][x] for y ∈ eachindex(lines), x ∈ eachindex(lines[1])]
 end
 
 function part_one(matrix::Matrix{Char})
     yl = last(axes(matrix, 1))
+    xl = last(axes(matrix, 2))
     counter = 0
     for y ∈ axes(matrix, 1)
-        for x ∈ 1:(last(axes(matrix, 2))-3)
-            (matrix[y, x] == 'X' && matrix[y, x+1] == 'M' && matrix[y, x+2] == 'A' && matrix[y, x+3] == 'S') && begin counter += 1 end
-            (matrix[y, x] == 'S' && matrix[y, x+1] == 'A' && matrix[y, x+2] == 'M' && matrix[y, x+3] == 'X') && begin counter += 1 end
-            ((y+3) <= yl && matrix[y, x] == 'X' && matrix[y+1, x+1] == 'M' && matrix[y+2, x+2] == 'A' && matrix[y+3, x+3] == 'S') && begin counter += 1 end
-            ((y+3) <= yl && matrix[y, x] == 'S' && matrix[y+1, x+1] == 'A' && matrix[y+2, x+2] == 'M' && matrix[y+3, x+3] == 'X') && begin counter += 1 end
+        for x ∈ axes(matrix, 2)
+            ((x+3) <= xl && matrix[y, x] == 'X' && matrix[y, x+1] == 'M' && matrix[y, x+2] == 'A' && matrix[y, x+3] == 'S') && begin counter += 1 end
+            ((x+3) <= xl && matrix[y, x] == 'S' && matrix[y, x+1] == 'A' && matrix[y, x+2] == 'M' && matrix[y, x+3] == 'X') && begin counter += 1 end
+            ((x+3) <= xl && (y+3) <= yl && matrix[y, x] == 'X' && matrix[y+1, x+1] == 'M' && matrix[y+2, x+2] == 'A' && matrix[y+3, x+3] == 'S') && begin counter += 1 end
+            ((x+3) <= xl && (y+3) <= yl && matrix[y, x] == 'S' && matrix[y+1, x+1] == 'A' && matrix[y+2, x+2] == 'M' && matrix[y+3, x+3] == 'X') && begin counter += 1 end
             ((y+3) <= yl && matrix[y, x] == 'X' && matrix[y+1, x] == 'M' && matrix[y+2, x] == 'A' && matrix[y+3, x] == 'S') && begin  counter += 1 end
             ((y+3) <= yl && matrix[y, x] == 'S' && matrix[y+1, x] == 'A' && matrix[y+2, x] == 'M' && matrix[y+3, x] == 'X') && begin  counter += 1 end            
             ((x>=4) && (y+3)<=yl && matrix[y, x] == 'X' && matrix[y+1, x-1] == 'M' && matrix[y+2, x-2] == 'A' && matrix[y+3, x-3] == 'S') && begin counter += 1 end                
