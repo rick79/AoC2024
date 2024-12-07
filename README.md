@@ -3,7 +3,7 @@ Trying to learn Julia this year.
 ### Day 1
 Staring with two easy problems. Learned about broadcasting and working with arrays in Julia. Both part one and part two were solved in one line each after the input was parsed.
 ### Day 2
-Another day with simple problems where you check if a list of numbers are in eihter increasing och decreasing order. In part two you check if the lists not in order can be made to be in order if you remove an element. Learned about constructing arrays with [x for x in y]. I foresee that my code will be less readable from now on.
+Another day with simple problems where you check if a list of numbers are in either increasing och decreasing order. In part two you check if the lists not in order can be made to be in order if you remove an element. Learned about constructing arrays with [x for x in y]. I foresee that my code will be less readable from now on.
 ### Day 3
 This day was solved easily with regex. Learned how to use regex in Julia and how to work with matrices.
 ### Day 4
