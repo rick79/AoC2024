@@ -129,13 +129,9 @@ Both parts of this puzzle are complete! They provide two gold stars: **
 =#
 
 function read_data(path::String)
-    input = open(path) do file
-        read(file, String)
-    end
-    lines = split(input, "\n", keepempty = false)
     lhs = Vector{Int64}()
     rhs = Vector{Int64}()
-    for line ∈ lines
+    for line ∈ readlines(path)
         v = split(line, " ", keepempty = false)
         push!(lhs, parse(Int64, first(v)))
         push!(rhs, parse(Int64, last(v)))
@@ -144,7 +140,7 @@ function read_data(path::String)
 end
 
 function part_one(lhs::Vector{Int64}, rhs::Vector{Int64})
-    println(string("Part One: ", sum(broadcast(abs, sort(rhs) - sort(lhs)))))
+    println(string("Part One: ", sum(abs.(sort(rhs) .- sort(lhs)))))
 end
 
 function part_two(lhs::Vector{Int64}, rhs::Vector{Int64})

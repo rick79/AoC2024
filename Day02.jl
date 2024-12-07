@@ -84,20 +84,7 @@ Both parts of this puzzle are complete! They provide two gold stars: **
 =#
 
 function read_data(path::String)
-    input = open(path) do file
-        read(file, String)
-    end
-    lines = split(input, "\n", keepempty = false)
-    data = Vector{Vector{Int64}}()
-    for line ∈ lines
-        values = split(line, " ", keepempty = false)
-        res = Vector{Int64}()
-        for value ∈ values
-            push!(res, parse(Int64, value))
-        end
-        push!(data, res)
-    end
-    return data
+    return [[parse(Int64, value) for value ∈ split(line, " ", keepempty = false)] for line ∈ readlines(path)]
 end
 
 
@@ -112,10 +99,7 @@ function check(report::Vector{Int64})
 end
 
 function part_one(reports::Vector{Vector{Int64}})
-    res = Vector{Bool}()
-    for report ∈ reports
-        push!(res, check(report))
-    end
+    res = [check(report) for report ∈ reports]
     println(string("Part One: ", sum(res)))
 end
 

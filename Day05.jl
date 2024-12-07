@@ -188,26 +188,12 @@ function uglysort(pages::Vector{Int64}, rules::Vector{Tuple{Int64, Int64}})
 end
 
 function part_one(updates::Vector{Vector{Int64}}, rules::Vector{Tuple{Int64, Int64}})
-    res = Vector{Int64}()
-    for pages ∈ updates
-        correct = true
-        for page ∈ pages
-            correct = correct && check_rules(page, pages, rules)
-        end
-        correct && push!(res, pages[ceil(Int64, length(pages)/2)])
-    end
+    res = [all([check_rules(page, pages, rules) for page ∈ pages]) ? pages[ceil(Int64, length(pages)/2)] : 0 for pages ∈ updates]
     println("Part One: $(sum(res))")
 end
 
 function part_two(updates::Vector{Vector{Int64}}, rules::Vector{Tuple{Int64, Int64}})
-    res = Vector{Int64}()
-    for pages ∈ updates
-        correct = true
-        for page ∈ pages
-            correct = correct && check_rules(page, pages, rules)
-        end
-        !correct && push!(res, uglysort(pages, rules)[ceil(Int64, length(pages)/2)]) 
-    end
+    res = [!all([check_rules(page, pages, rules) for page ∈ pages]) ? uglysort(pages, rules)[ceil(Int64, length(pages)/2)] : 0 for pages ∈ updates] 
     println("Part Two: $(sum(res))")
 end
 
