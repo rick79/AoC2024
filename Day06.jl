@@ -257,11 +257,11 @@ function walk_the_line(y::Int64, x::Int64, Δy::Int64, Δx::Int64, map::Matrix{C
 end
 
 function all_over_again(y::Int64, x::Int64, Δy::Int64, Δx::Int64, map::Matrix{Char}, obsy::Int64, obsx::Int64)
-    visited = Vector{Tuple{Int64, Int64, Int64, Int64}}()
+    visited = Set{Tuple{Int64, Int64, Int64, Int64}}()
     height = last(axes(map, 1))
     width = last(axes(map, 2))
     while y > 0 && y < height + 1 && x > 0 && x < width + 1
-        (y, x) ∉ visited && push!(visited, (y, x, Δy, Δx))
+        push!(visited, (y, x, Δy, Δx))
         if y+Δy > 0 && y+Δy < height + 1 && x+Δx > 0 && x+Δx < width + 1 && (map[y+Δy, x+Δx] == '#' || (y+Δy == obsy && x+Δx == obsx))
             Δy, Δx = Δx, -Δy
             continue
