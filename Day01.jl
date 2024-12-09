@@ -149,8 +149,8 @@ end
 
 #(lhs, rhs) = read_data("Day01-test.txt")
 (lhs, rhs) = read_data("Day01-data.txt")
-part_one(lhs, rhs)
-part_two(lhs, rhs)
+@time part_one(lhs, rhs)
+@time part_two(lhs, rhs)
 
 
 

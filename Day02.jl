@@ -122,5 +122,5 @@ end
 
 #reports = read_data("Day02-test.txt")
 reports = read_data("Day02-data.txt")
-part_one(reports)
-part_two(reports)
+@time part_one(reports)
+@time part_two(reports)

@@ -98,5 +98,5 @@ end
 #data = read_data("Day03-test.txt")
 #data = read_data("Day03-test2.txt")
 data = read_data("Day03-data.txt")
-part_one(data)
-part_two(data)
+@time part_one(data)
+@time part_two(data)

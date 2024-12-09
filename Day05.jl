@@ -199,5 +199,5 @@ end
 
 #(updates, rules) = read_data("Day05-test.txt")
 (updates, rules) = read_data("Day05-data.txt")
-part_one(updates, rules)
-part_two(updates, rules)
+@time part_one(updates, rules)
+@time part_two(updates, rules)

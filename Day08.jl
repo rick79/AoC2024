@@ -163,11 +163,10 @@ function read_data(path::String)
     return [lines[y][x] for y ∈ eachindex(lines), x ∈ eachindex(lines[1])]
 end
 
-
-function get_antinodes((y1, x1)::Tuple{Int64, Int64}, (y2, x2)::Tuple{Int64, Int64}, height::Int64, width::Int64, limit::Int64)
+function find_antinodes_for((y1, x1)::Tuple{Int64, Int64}, (y2, x2)::Tuple{Int64, Int64}, height::Int64, width::Int64, limit::Int64)
     Δy = y2-y1
     Δx = x2-x1
-    res = Vector{Tuple{Int64, Int64}}()
+    res = Set{Tuple{Int64, Int64}}()
     if limit > 1
         res = [(y1, x1), (y2, x2)]
     end
@@ -184,44 +183,32 @@ function get_antinodes((y1, x1)::Tuple{Int64, Int64}, (y2, x2)::Tuple{Int64, Int
     return res
 end
 
-function part_one(map::Matrix{Char})
+function find_all_antinodes(map::Matrix{Char}, limit::Bool)
     targets = ['a':'z'..., 'A':'Z'..., '0':'9'...]
     antennas = [(pos[1], pos[2], map[pos[1], pos[2]]) for pos ∈ findall(f->f ∈ targets, map)]
     height = last(axes(map, 1))
     width = last(axes(map, 2))
-    res = Vector{Tuple{Int64, Int64}}()
+    res = Set{Tuple{Int64, Int64}}()
     for (y, x, f) ∈ antennas
         for (ny, nx, nf) ∈ filter(((ny, nx, nf),)->nf == f && ny != y && nx != x, antennas)
-            for (ay, ax) ∈ get_antinodes((y, x), (ny, nx), height, width, 1)
-                (ay, ax) ∉ res && push!(res, (ay, ax))
-            end
+            union!(res, find_antinodes_for((y, x), (ny, nx), height, width, limit ? 1 : height+width))
         end
     end
+    return res
+end
+
+function part_one(map::Matrix{Char})
+    res = find_all_antinodes(map, true)
     println("Part One: $(length(res))")
 end
 
 function part_two(map::Matrix{Char})
-    targets = ['a':'z'..., 'A':'Z'..., '0':'9'...]
-    antennas = [(pos[1], pos[2], map[pos[1], pos[2]]) for pos ∈ findall(f->f ∈ targets, map)]
-    height = last(axes(map, 1))
-    width = last(axes(map, 2))
-    res = Vector{Tuple{Int64, Int64}}()
-    for (y, x, f) ∈ antennas
-        for (ny, nx, nf) ∈ filter(((ny, nx, nf),)->nf == f && ny != y && nx != x, antennas)
-            for (ay, ax) ∈ get_antinodes((y, x), (ny, nx), height, width, height+width)
-                (ay, ax) ∉ res && push!(res, (ay, ax))
-            end
-        end
-    end
-    println("Part One: $(length(res))")
+    res = find_all_antinodes(map, false)
+    println("Part Two: $(length(res))")
 end
 
+#data = read_data("Day08-test.txt")
+data = read_data("Day08-data.txt")
 
-
-
-
-#map = read_data("Day08-test.txt")
-map = read_data("Day08-data.txt")
-
-part_one(map)
-part_two(map)
+@time part_one(data)
+@time part_two(data)
