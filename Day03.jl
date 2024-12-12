@@ -92,7 +92,7 @@ function part_two(data::String)
     for match ∈ eachmatch(r"(?<=do\(\))(.+?)(?=don't\(\))", string("do()", data, "don't()"))
         push!(res, extract_and_mul(string(match[1])))
     end
-    println(string("Part One: ", sum(res)))
+    println(string("Part Two: ", sum(res)))
 end
 
 #data = read_data("Day03-test.txt")
