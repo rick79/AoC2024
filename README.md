@@ -377,10 +377,6 @@ You're playing with a claw machine and can describe the claws motion as a system
 <<<<<<< HEAD
 ### Part one
 I must admit that I didn't read the instructions that well before I started so I didn't see that the problem was a system of linear equations before I already had solved part one using loops. Firstly I rewrote the system as matrix A and the target point as a vector b and solved the system using `A\b´. Surprisingly this didn't work that well since there seems to be a very small error when doing this calculation for one of the machines in the test data. But since it is a very small system with only two unknowns it was easy to use substitution to solve it.
-=======
-#### Part one
-I must admit that I didn't read the instructions that well before I started so I didn't see that the problem was a system of linear equations before I already had solved part one using loops. Firstly I rewrote the system as matrix A and the target point as a vector b and solved the system using `A\b`. Surprisingly this didn't work that well since there seems to be a very small error when doing this calculation for one of the machines in the test data. But since it is a very small system with only two unknowns it was easy to use substitution to solve it.
->>>>>>> d98c9f0e6cf5cdb517a1730c6ee011186e3f16db
 ```
 BenchmarkTools.Trial: 10000 samples with 1 evaluation.
  Range (min … max):   51.500 μs …   3.113 s  ┊ GC (min … max): 0.00% … 0.00%
