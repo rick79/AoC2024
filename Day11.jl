@@ -157,9 +157,9 @@ function part_two(list::Vector{Int})
     end
     println("Part Two: $res")
 end
-
+using BenchmarkTools
 #data = read_data("Day11-test.txt")
 data = read_data("Day11-data.txt")
-@time part_one(data)
-@time part_two(data)
+#@benchmark part_one(data)
+@benchmark part_two(data)
 

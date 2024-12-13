@@ -112,8 +112,37 @@ Todays problem was defragging a set consisting of numbers and empty spaces betee
 Two easy problems. Given a height map and a set of starting positions map out paths that increases one level in elevation for each step. For part one count the number of reachable peak positions for each starting position and for part two how many unique paths there are between the starting positions and peak positions. Solved both pars using DFS. Running time for part one was 380 μs and for part two 370 μs. Didn't learn anything new today. =(
 
 ### Day 11
-You start with a set of numbers. Each number will evolve according to a few rules, some of these rules will increase the number and others will split the number into two. You are required to iterate through these evolutions. For part one iterate 25 times and for part two 75 times. Part one was easy to brute force. Part two required memoization.
-Running time for part one was ~10 ms for the brute force solution and 650 μs for the memoization solution. Running time for part two was ~ 30 ms. Learned about the cost of passing and concatenating arrays around.
+You start with a set of numbers. Each number will evolve according to a few rules, some of these rules will increase the number and others will split the number into two. You are required to iterate through these evolutions and then count the number of numbers you have at the end. 
+
+#### Part one
+For part one iterate 25 times. This was easy to brute force, but since the solution for part two works just as well for part one I used my latter solution here instead.
+
+```
+BenchmarkTools.Trial: 6923 samples with 1 evaluation.
+ Range (min … max):  558.708 μs …  16.380 ms  ┊ GC (min … max): 0.00% …  0.00%
+ Time  (median):     609.083 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   716.147 μs ± 562.307 μs  ┊ GC (mean ± σ):  9.21% ± 14.15%
+
+  ▆█▇▅▄▂▂▁▁                                                     ▂
+  ████████████▇▇▆▃▄▅▄▄▃▃▁▁▄▁▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▁▄▆▅▇▇██████▇▇▇▆▅▆▆ █
+  559 μs        Histogram: log(frequency) by time       2.21 ms <
+
+ Memory estimate: 1.15 MiB, allocs estimate: 15100.
+```
+#### Part two
+For part two iterate 75 times. Trying to brute force part two takes forever. Rewrote part one but with recursion and memoization.
+```
+BenchmarkTools.Trial: 199 samples with 1 evaluation.
+ Range (min … max):  21.508 ms … 52.767 ms  ┊ GC (min … max):  0.00% … 58.30%
+ Time  (median):     24.124 ms              ┊ GC (median):     7.19%
+ Time  (mean ± σ):   25.059 ms ±  5.011 ms  ┊ GC (mean ± σ):  10.59% ± 10.03%
+
+   ▁  █▅▃                                                      
+  ▅█▄████▇▆▂▂▂▁▂▁▁▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▃ ▂
+  21.5 ms         Histogram: frequency by time          52 ms <
+
+ Memory estimate: 36.93 MiB, allocs estimate: 761936.
+```
 
 ### Day 12
 Given a garden with square plots represented by a matrix where the values denotes the type of plants. Plants of the same type adjecent to each other forms a region. A region can contain other regions. Calculate the cost for building fences around each region. In part one the cost is calculated by multiplying the region perimeter and area. In part two the cost is calculated by multiply the number of edges for each region with the area. 
@@ -145,3 +174,35 @@ BenchmarkTools.Trial: 63 samples with 1 evaluation.
 
  Memory estimate: 149.92 MiB, allocs estimate: 34205.
 ```
+
+### Day 13
+You're playing with a claw machine and can describe the claws motion as a system with two linear equations: ay<sub>1</sub> + by<sub>2</sub> = c<sub>1</sub> and ax<sub>1</sub>+bx<sub>2</sub>=c<sub>2</sub>. You move the claw by pushing one of two buttons (a and b) and it moves by y<sub>1</sub>, x<sub>1</sub> or y<sub>2</sub>, x<sub>2</sub> depending on which button you press. For each claw machine you have a target coordinate c<sub>1</sub>, c<sub>2</sub> that you want to reach. Solve for integer solutions.
+#### Part one
+I must admit that I didn't read the instructions that well before I started so I didn't see that the problem was a system of linear equations before I already had solved part one using loops. Firstly I rewrote the system as matrix A and the target point as a vector b and solved the system using `A\b´. Surprisingly this didn't work that well since there seems to be a very small error when doing this calculation for one of the machines in the test data. But since it is a very small system with only two unknowns it was easy to use substitution to solve it.
+```
+BenchmarkTools.Trial: 10000 samples with 1 evaluation.
+ Range (min … max):   51.500 μs …   3.113 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):      75.188 μs              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   386.939 μs ± 31.130 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
+
+                 ▁▂▃▄▃▂▁▁▂█▇▁                                   
+  ▂▂▃▃▅▅▇▆▆▆▆▆▆▆▇█████████████▆▅▄▃▃▃▂▂▂▂▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
+  51.5 μs         Histogram: frequency by time          122 μs <
+
+ Memory estimate: 2.84 KiB, allocs estimate: 14.
+```
+#### Part two
+In part two coordinates for the target points are increased by 10 000 000 000 000. Using loops for this is prohibitive, but luckily solving the linear system with these larger target coordinates works just the same as for the orginal target coordinates. The runtime for part one and part two should'nt differ, but I had to copy my array with claw machines when running the benchmark tests since I modify the target coordinates for part two.
+```
+BenchmarkTools.Trial: 4024 samples with 1 evaluation.
+ Range (min … max):  145.292 μs …    6.500 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     163.416 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):     1.809 ms ± 102.463 ms  ┊ GC (mean ± σ):  0.33% ± 4.28%
+
+  ▅█▆▅▃▂▁                                                       ▁
+  █████████▇▇▆▆▆▃▄▅▅▆▄▅▄▅▁▃▃▄▁▅▃▅▃▅▅▃▄▁▁▄▁▁▃▁▅▃▄▄▃▁▁▄▃▃▃▁▃▁▃▃▃▃ █
+  145 μs        Histogram: log(frequency) by time        777 μs <
+
+ Memory estimate: 95.14 KiB, allocs estimate: 2204.
+```
+
