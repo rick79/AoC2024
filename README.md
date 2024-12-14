@@ -403,3 +403,68 @@ BenchmarkTools.Trial: 4024 samples with 1 evaluation.
  Memory estimate: 95.14 KiB, allocs estimate: 2204.
 ```
 
+## Day 14
+Given a room with a specified height and width and a list of robots with a y, x position and a Δy, Δx velocity. Simulate where the robots will be after a given amount of time has passed. Robots that move outside the confines of the room teleport to the other side of the room.
+### Part one
+The first part was pretty straigt forward. Simulate where the robots are after 100 iterations and calculate a score based on the multiple of robots in each quadrant of the room. Robots that are in the middle horizontal and vertical lines does not count. Just increase each robots position with the velocity * iterations. Take this value modulo the width and height to account for robots moving of the right and bottom edges. If a robot has a negative position move it to the other side of the room to account for robots moving of the top and left edges.
+```
+BenchmarkTools.Trial: 7911 samples with 1 evaluation.
+ Range (min … max):  173.000 μs …   3.214 s  ┊ GC (min … max): 0.00% …  0.00%
+ Time  (median):     196.375 μs              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   628.057 μs ± 36.133 ms  ┊ GC (mean ± σ):  3.05% ± 11.07%
+
+  ▇█▆▅▃▂▁                                                      ▁
+  █████████▇▇▆▆▆▃▄▁▄▁▁▄▁▁▁▁▅▄▅▃▃▄▁▁▁▄▆▃▄▄▃▁▁▃▄▄▅▄▅▅▆▄▅▅▄▄▄▄▄▄▃ █
+  173 μs        Histogram: log(frequency) by time      1.08 ms <
+
+ Memory estimate: 320.10 KiB, allocs estimate: 1948.
+```
+### Part two
+Part two was trickier. Now you want to know how many iterations are needed for the majority of the robots to form a christmas tree. Without knowing how they form the tree (large tree, small tree, edges of a tree, filled tree, etc). My first solution was to output the first 10 000 iterations to a file and manually inspect the contents for something that looked like a tree. It worked. Knowing how a tree was formed my next solution was to calcuate an adjecency score for a room where each robot adds 0 - 4 to the score depending on how many directions there are another robot in. Then i looped through the first 10 000 iterations looking for the highest adjecency score.
+```
+1111111111111111111111111111111
+1                             1
+1                             1
+1                             1
+1                             1
+1              1              1
+1             111             1
+1            11111            1
+1           1111111           1
+1          111111111          1
+1            11111            1
+1           1111111           1
+1          111111111          1
+1         11111111111         1
+1        1111111111111        1
+1          111111111          1
+1         11111111111         1
+1        1111111111111        1
+1       111111111111111       1
+1      11111111111111111      1
+1        1111111111111        1
+1       111111111111111       1
+1      11111111111111111      1
+1     1111111111111111111     1
+1    111111111111111111111    1
+1             111             1
+1             111             1
+1             111             1
+1                             1
+1                             1
+1                             1
+1                             1
+1111111111111111111111111111111
+```
+```
+BenchmarkTools.Trial: 31 samples with 1 evaluation.
+ Range (min … max):  153.484 ms … 174.081 ms  ┊ GC (min … max): 26.01% … 31.56%
+ Time  (median):     159.929 ms               ┊ GC (median):    28.26%
+ Time  (mean ± σ):   161.631 ms ±   4.902 ms  ┊ GC (mean ± σ):  28.36% ±  1.59%
+
+              ▄▁   █      ▁▁                                     
+  ▆▁▁▁▁▁▆▁▁▁▆▆██▆▁▁█▆▆▁▆▁▁██▆▁▁▆▆▁▁▁▁▆▆▁▁▁▆▁▆▁▁▁▁▆▁▁▁▁▁▁▁▁▁▁▁▆▆ ▁
+  153 ms           Histogram: frequency by time          174 ms <
+
+ Memory estimate: 795.53 MiB, allocs estimate: 31931.
+```
