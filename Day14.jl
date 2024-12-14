@@ -269,6 +269,7 @@ function part_two(robots::Vector{Robot}, height::Int, width::Int)
     end
 end
 =#
+
 function part_two(robots::Vector{Robot}, height::Int, width::Int)
     robots = deepcopy(robots)    
     ha = 0
@@ -287,5 +288,6 @@ function part_two(robots::Vector{Robot}, height::Int, width::Int)
 end
 
 data = read_data("Day14-data.txt")
+#data = read_data("Day14-test.txt")
 @time part_one(data, 103, 101)
 @time part_two(data, 103, 101)
