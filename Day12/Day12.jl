@@ -278,8 +278,8 @@ function part_two(data::Matrix{Char})
 end
 
 
-data = read_data("Day12-data.txt")
-#data = read_data("Day12-test.txt")
+data = read_data("./Day12/data.txt")
+#data = read_data("./Day12/test.txt")
 
 @time part_one(data)
 @time part_two(data)

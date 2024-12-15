@@ -159,8 +159,8 @@ function part_two(clawmachines::Vector{ClawMachine})
 end
 
 
-#data = read_data("Day13-test.txt")
-data = read_data("Day13-data.txt")
+#data = read_data("./Day13/test.txt")
+data = read_data("./Day13/data.txt")
 
 @time part_one(data)
 @time part_two(data)

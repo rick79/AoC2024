@@ -1,6 +1,6 @@
 # Advent of Code 2024
 Trying to learn Julia this year.
-## Day 1
+## Day 1: Historian Hysteria
 Staring with two easy problems. Both part one and part two were solved in one line each after the input was parsed. Learned about broadcasting and working with arrays in Julia. 
 ### Part one
 Given two lists, sort them and calculate and sum pairwise distance between the lists.
@@ -31,7 +31,7 @@ BenchmarkTools.Trial: 7221 samples with 1 evaluation.
  Memory estimate: 262.32 KiB, allocs estimate: 4052.
 ```
 
-## Day 2
+## Day 2: Red-Nosed Reports
 Another day with simple problems. Learned about constructing arrays with [x for x in y]. I foresee that my code will be less readable from now on. 
 ### Part one
 Given a list with number sequences, check if a sequence of numbers is in either increasing och decreasing order. Adjecent numbers can differ by [1-3]. Find the number of sequences that are in order.
@@ -62,7 +62,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
  Memory estimate: 862.93 KiB, allocs estimate: 24644.
 ```
 
-## Day 3
+## Day 3: Mull It Over
 This day was solved easily with regex. Learned how to use regex in Julia and how to work with matrices.
 ### Part one
 ```
@@ -91,7 +91,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
  Memory estimate: 118.68 KiB, allocs estimate: 2182.
  ```
 
-## Day 4
+## Day 4: Ceres Search
 Day 4 was a xmas mess. Not that the problems were that hard, just that my solution was tedious. You are given a matrix with characters and want to search for the word XMAS written in different directions. Solved both part one and part two by iterating through thea matrix looking for patterns using conditional statements. Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
 ### Part one
 In part one you're looking for the word XMAS written horizontally, vertically, diagonally, from left to right and right to left.
@@ -122,7 +122,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
  Memory estimate: 280 bytes, allocs estimate: 11.
  ```
 
-## Day 5
+## Day 5: Print Queue
 You are given a set of rules that defines an order of numbers in a sequence and a list of number sequences. Learned about anonymous functions as arguments. 
 ### Part one
 In part one you're asked to check if the number sequences follow the ordering rules.
@@ -153,7 +153,7 @@ BenchmarkTools.Trial: 112 samples with 1 evaluation.
  Memory estimate: 303.28 MiB, allocs estimate: 421919.
 ```
 
-## Day 6
+## Day 6: Guard Gallivant
 Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.53 s for part to by just switching an array to a set).
 ### Part  one
 Part one was about walking about in a matrix turning 90 degrees to the right if you encounter an obstacle, solved by walking step by step. The solution could be sped up by determining how many steps you can take before you encounter a obstacle and mark all these as visited, something that I'd be able to do easily in R.
@@ -184,7 +184,7 @@ BenchmarkTools.Trial: 9 samples with 1 evaluation.
  Memory estimate: 2.21 GiB, allocs estimate: 109633.
 ```
 
-## Day 7
+## Day 7: Bridge Repair
 Another easy day if you have a lot of processor to work with. Build a tree with numbers based on a set of possible permutations of operators. Learned about using recursive functions and first class functions. 
 ### Part one
 For part one you have the operators + and *.
@@ -215,7 +215,7 @@ BenchmarkTools.Trial: 2 samples with 1 evaluation.
  Memory estimate: 6.96 GiB, allocs estimate: 203006554.
 ```
 
-## Day 8
+## Day 8: Resonant Collinearity
 Two straightforward problems. Given a set of points with given types on a map, calculate points extending on a line from each pair of points with the same type at the same intervals as the initial points. Learned about unpacking tuples in anonymous functions.
 ### Part one
 For part one only calculate one point in each direction.
@@ -246,7 +246,7 @@ BenchmarkTools.Trial: 9140 samples with 1 evaluation.
  Memory estimate: 1.42 MiB, allocs estimate: 3391.
 ```
 
-## Day 9
+## Day 9: Disk Fragmenter
 Todays problem was defragging a set consisting of numbers and empty spaces beteen numbers. Learned to not rely too much on recursion and iterating through arrays. And learned how to benchmark and time function calls.
 ### Part one
 In part one you just move the numbers at the back forwards to empty slots.
@@ -277,7 +277,7 @@ BenchmarkTools.Trial: 7 samples with 1 evaluation.
  Memory estimate: 109.85 MiB, allocs estimate: 3598905.
 ```
 
-## Day 10
+## Day 10: Hoof It
 Two easy problems. Given a height map and a set of starting positions map out paths that increases one level in elevation for each step. Didn't learn anything new today. =(
 ### Part one
 For part one count the number of reachable peak positions for each starting position. Solved using DFS.
@@ -308,7 +308,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
  Memory estimate: 829.38 KiB, allocs estimate: 8067.
 ```
 
-## Day 11
+## Day 11: Plutonian Pebbles
 You start with a set of numbers. Each number will evolve according to a few rules, some of these rules will increase the number and others will split the number into two. You are required to iterate through these evolutions and then count the number of numbers you have at the end. 
 
 ### Part one
@@ -341,7 +341,7 @@ BenchmarkTools.Trial: 199 samples with 1 evaluation.
  Memory estimate: 36.93 MiB, allocs estimate: 761936.
 ```
 
-## Day 12
+## Day 12: Garden Groups
 Given a garden with square plots represented by a matrix where the values denotes the type of plants. Plants of the same type adjecent to each other forms a region. A region can contain other regions. Calculate the cost for building fences around each region. In part one the cost is calculated by multiplying the region perimeter and area. In part two the cost is calculated by multiply the number of edges for each region with the area. 
 ### Part one
 Part one was easily solved with flood fill for calculating the area and at the same time for each filled plot counting the number of adjecent plots with another type of plant. Find the first non-processed region, calculate the cost, set the plots of the region as processed. Repeat until no more non-procesed plots exist. Learned how to use BenchmarkTools.
@@ -372,7 +372,7 @@ BenchmarkTools.Trial: 63 samples with 1 evaluation.
  Memory estimate: 149.92 MiB, allocs estimate: 34205.
 ```
 
-## Day 13
+## Day 13: Claw Contraption
 You're playing with a claw machine and can describe the claws motion as a system with two linear equations: ay<sub>1</sub> + by<sub>2</sub> = c<sub>1</sub> and ax<sub>1</sub>+bx<sub>2</sub>=c<sub>2</sub>. You move the claw by pushing one of two buttons (a and b) and it moves by y<sub>1</sub>, x<sub>1</sub> or y<sub>2</sub>, x<sub>2</sub> depending on which button you press. For each claw machine you have a target coordinate c<sub>1</sub>, c<sub>2</sub> that you want to reach. Solve for integer solutions.
 ### Part one
 I must admit that I didn't read the instructions that well before I started so I didn't see that the problem was a system of linear equations before I already had solved part one using loops. Firstly I rewrote the system as matrix A and the target point as a vector b and solved the system using `A\b´. Surprisingly this didn't work that well since there seems to be a very small error when doing this calculation for one of the machines in the test data. But since it is a very small system with only two unknowns it was easy to use substitution to solve it.
@@ -403,10 +403,10 @@ BenchmarkTools.Trial: 4024 samples with 1 evaluation.
  Memory estimate: 95.14 KiB, allocs estimate: 2204.
 ```
 
-## Day 14
-Given a room with a specified height and width and a list of robots with a y, x position and a Δy, Δx velocity. Simulate where the robots will be after a given amount of time has passed. Robots that move outside the confines of the room teleport to the other side of the room.
+## Day 14: Restroom Redoubt
+You are in a bathroom at Easter Bunny HQ that is being patrolled by a swarm of robots that each have a position and velocity. You need to find out where the robots will be in the future. You are given the rooms height and width and a list of robots (with y, x, Δy/s, and Δx/s). Simulate where the robots will be after a given amount of time has passed. Robots that move outside the confines of the room teleport to the other side of the room.
 ### Part one
-The first part was pretty straigt forward. Simulate where the robots are after 100 iterations and calculate a score based on the multiple of robots in each quadrant of the room. Robots that are in the middle horizontal and vertical lines does not count. Just increase each robots position with the velocity * iterations. Take this value modulo the width and height to account for robots moving of the right and bottom edges. If a robot has a negative position move it to the other side of the room to account for robots moving of the top and left edges.
+The first part was pretty straigt forward. Simulate where the robots are after 100 seconds and calculate a score based on the multiple of robots in each quadrant of the room. Robots that are in the middle horizontal and vertical lines does not count. Just increase each robots position with the velocity * number of seconds (100). Take the y component modulo the height and the x component modulo the width to account for robots moving of the right and bottom edges. If a robot has a negative position move it to the other side of the room to account for robots moving of the top and left edges. Calulate the score by multiplying the number of robots in each quadrant of the room discounting robots that are on either of the middle lines.
 ```
 BenchmarkTools.Trial: 7911 samples with 1 evaluation.
  Range (min … max):  173.000 μs …   3.214 s  ┊ GC (min … max): 0.00% …  0.00%
@@ -420,7 +420,9 @@ BenchmarkTools.Trial: 7911 samples with 1 evaluation.
  Memory estimate: 320.10 KiB, allocs estimate: 1948.
 ```
 ### Part two
-Part two was trickier. Now you want to know how many iterations are needed for the majority of the robots to form a christmas tree. Without knowing how they form the tree (large tree, small tree, edges of a tree, filled tree, etc). My first solution was to output the first 10 000 iterations to a file and manually inspect the contents for something that looked like a tree. It worked. Knowing how a tree was formed my next solution was to calcuate an adjecency score for a room where each robot adds 0 - 4 to the score depending on how many directions there are another robot in. Then i looped through the first 10 000 iterations looking for the highest adjecency score.
+Part two was trickier. Now you want to know how many seconds have to pass for the majority of the robots to form a christmas tree. Without knowing how they form the tree (large tree, small tree, edges of a tree, filled tree, etc). My first solution was to output the first 10 000 iterations to a file and manually inspect the contents for something that looked like a tree. It worked. Knowing how the tree looked my next solution was to calcuate an adjecency score for a a given state where each robot adds 0 - 4 to the score depending on how many directions there are another robot in. Then I looped through the first 10 000 iterations looking for the highest adjecency score. You could probably take a sample and calculate a mean adjecency score and look for scores that are significantly larger than this to not have to loop through so many iterations.
+
+Looking at how others have solved part two many seems to have assumed that either each robots will have a unique position or that several robots will line up vertically or horizontally when the form the tree. Both ways work, but they are hail maries when it comes to reasoning. Some have used the Chinese Remainder-Theorem to calculate the number of seconds after finding that the robots repeat their y and x positions every 101 respective 103 seconds. This is a much nicer solution but you still need to find these intervalls. Others have calculated a mean standard deviation for the robots positions and used this to find a time where the deviation differs a lot.
 ```
 1111111111111111111111111111111
 1                             1
@@ -468,3 +470,35 @@ BenchmarkTools.Trial: 31 samples with 1 evaluation.
 
  Memory estimate: 795.53 MiB, allocs estimate: 31931.
 ```
+
+## Day 15: Warehouse Woes
+Todays problems should be called the Adventures of Lolo! You start in a warehouse consisting of walls (#) and crates (O for part one, [] for part two) and are given a set of instructions (move up, down, left or right). When you move into a crate you push it. If several crates are lined up you push all of them. You can not move or push a crate into a wall.
+### Part one
+My solution for part one was to go through each instruction. For each instruction checking if the space indicated by the instruction is empty, and if it is a crate if the next space in line etc, stoping if encountering a wall. If there is at least one emtpy space in the line of movement push the current position into a que and repeat until the que is empty: pop the last item from the que; if the next space in line is empty, move there; if the next space is a crate push the current position and the crates position to the que.
+```
+BenchmarkTools.Trial: 6095 samples with 1 evaluation.
+ Range (min … max):  620.667 μs …  14.201 ms  ┊ GC (min … max):  0.00% …  0.00%
+ Time  (median):     665.959 μs               ┊ GC (median):     0.00%
+ Time  (mean ± σ):   811.491 μs ± 505.422 μs  ┊ GC (mean ± σ):  14.18% ± 18.35%
+
+  ▅█▇▆▅▄▃▂▂▁▁ ▁                         ▂▂▂▂▁   ▁▂▂▂▁           ▂
+  █████████████▇▇▆▇▆▆▃▅▃▅▅▄▃▄▁▁▁▁▁▁▁▁▅▆████████████████▇▇▆▇▇▆▅▆ █
+  621 μs        Histogram: log(frequency) by time       1.69 ms <
+
+ Memory estimate: 3.19 MiB, allocs estimate: 34552.
+```
+### Part two
+In part to the warehouse gets twice as wide where walls (#) becomes (##) and crates (O) becomes ([]). The solution from part one was easily modified to accomodate for part two. When checking if there is an empty space in the line of movement when moving up or down also consider if the next space is a [ or a ], instead of just checking one line from the current position also check from the positions of [ and ]. My original check from part one used a que, for part 2 I changed this to a recursive function that continues checking in a line if it encounters a small crate (O) or branches out if it encounters a large crate ([]). When pushing crates crates left or right, just use the same as for part one. When pushing up or down and encounter a large crate ([]) push the current position and each of the large crates positions to the que.
+```
+BenchmarkTools.Trial: 5100 samples with 1 evaluation.
+ Range (min … max):  730.083 μs …  17.408 ms  ┊ GC (min … max):  0.00% …  0.00%
+ Time  (median):     806.417 μs               ┊ GC (median):     0.00%
+ Time  (mean ± σ):   970.988 μs ± 617.221 μs  ┊ GC (mean ± σ):  12.33% ± 16.81%
+
+   ▂██▆▅▄▃▂▂▁ ▁▁                   ▂▂▂▂▁▁  ▁▂▂▂▂▁               ▂
+  █████████████████▇▅▆▃▅▅▄▄▃▁▃▃▆▆▆███████▇▇████████▆▆▆▅▆▆▅▃▅▆▅▃ █
+  730 μs        Histogram: log(frequency) by time       1.95 ms <
+
+ Memory estimate: 3.40 MiB, allocs estimate: 35949.
+```
+

@@ -262,7 +262,7 @@ function part_two(fs::Vector{Tuple{Int, Int, Bool}})
 end
 
 
-#data = read_data("Day09-test.txt")
-data = read_data("Day09-data.txt")
+#data = read_data("./Day09/test.txt")
+data = read_data("./Day09/data.txt")
 @time part_one(data)
 @time part_two(data)

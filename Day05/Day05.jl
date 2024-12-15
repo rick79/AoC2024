@@ -197,7 +197,7 @@ function part_two(updates::Vector{Vector{Int64}}, rules::Vector{Tuple{Int64, Int
     println("Part Two: $(sum(res))")
 end
 
-#(updates, rules) = read_data("Day05-test.txt")
-(updates, rules) = read_data("Day05-data.txt")
+#(updates, rules) = read_data("./Day05/test.txt")
+(updates, rules) = read_data("./Day05/data.txt")
 @time part_one(updates, rules)
 @time part_two(updates, rules)

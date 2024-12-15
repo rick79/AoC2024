@@ -111,8 +111,8 @@ function part_two(data::Vector{Tuple{Int64, Vector{Int64}}})
     println("Part Two: $(sum(result))")
 end
 
-#data = read_data("Day07-test.txt")
-data = read_data("Day07-data.txt")
+#data = read_data("./Day07/test.txt")
+data = read_data("./Day07/data.txt")
 
 @time part_one(data)
 @time part_two(data)

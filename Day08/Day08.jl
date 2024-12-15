@@ -207,8 +207,8 @@ function part_two(map::Matrix{Char})
     println("Part Two: $(length(res))")
 end
 
-#data = read_data("Day08-test.txt")
-data = read_data("Day08-data.txt")
+#data = read_data("./Day08/test.txt")
+data = read_data("./Day08/data.txt")
 
 @time part_one(data)
 @time part_two(data)

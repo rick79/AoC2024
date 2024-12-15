@@ -95,8 +95,8 @@ function part_two(data::String)
     println(string("Part Two: ", sum(res)))
 end
 
-#data = read_data("Day03-test.txt")
-#data = read_data("Day03-test2.txt")
-data = read_data("Day03-data.txt")
+#data = read_data("./Day03/test.txt")
+#data = read_data("./Day03/test2.txt")
+data = read_data("./Day03/data.txt")
 @time part_one(data)
 @time part_two(data)

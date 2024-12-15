@@ -206,7 +206,7 @@ function part_two(map::Matrix{Char})
     println("Part Two: $score")
 end
 
-#data = read_data("Day10-test.txt")
-data = read_data("Day10-data.txt")
+#data = read_data("./Day10/test.txt")
+data = read_data("./Day10/data.txt")
 @time part_one(data)
 @time part_two(data)

@@ -147,8 +147,8 @@ function part_two(lhs::Vector{Int64}, rhs::Vector{Int64})
     println(string("Part Two: ", sum(map(l->l * length(findall(r->r == l, rhs)), lhs))))
 end
 
-#(lhs, rhs) = read_data("Day01-test.txt")
-(lhs, rhs) = read_data("Day01-data.txt")
+#(lhs, rhs) = read_data("./Day01/test.txt")
+(lhs, rhs) = read_data("./Day01/data.txt")
 @time part_one(lhs, rhs)
 @time part_two(lhs, rhs)
 

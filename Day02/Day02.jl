@@ -120,7 +120,7 @@ function part_two(reports::Vector{Vector{Int64}})
     println(string("Part Two: ", sum(res)))
 end
 
-#reports = read_data("Day02-test.txt")
-reports = read_data("Day02-data.txt")
+#reports = read_data("./Day02/test.txt")
+reports = read_data("./Day02/data.txt")
 @time part_one(reports)
 @time part_two(reports)

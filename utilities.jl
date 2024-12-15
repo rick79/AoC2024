@@ -26,3 +26,15 @@ function print_matrix(matrix::Matrix)
         println()
     end
 end
+
+function ci2t(ci::CartesianIndex)
+    return !isnothing(ci) ? (ci[1], ci[2]) : nothing
+end
+
+function translate(c::Char)
+    c == '^' && return (-1, 0)
+    c == 'v' && return (1, 0)
+    c == '>' && return (0, 1)
+    c == '<' && return (0, -1)
+    return (0, 0)
+end
