@@ -1,4 +1,4 @@
-function read_matrix(Integer, path::String)
+function read_matrix(path::String)
     input = open(path) do file
         read(file, String)
     end
@@ -11,12 +11,10 @@ function read_matrix(Integer, path::String)
     end
 end
 
-function read_matrix(Char, path::String)
+function read_matrix(path::String)
     lines = readlines(path)
     return [lines[y][x] for y ∈ eachindex(lines), x ∈ eachindex(lines[1])]
 end
-
-
 
 function print_matrix(matrix::Matrix)
     for y ∈ axes(matrix, 1)
