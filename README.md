@@ -18,6 +18,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
 ```
 ### Part two
 In part two you want to find how similar the two list are by calculating a similarity score. The similarity score is calculated by multiplying the numbers from the left hand side list with the number of times they appear in the right hand side list and summing these values.
+```
 BenchmarkTools.Trial: 7221 samples with 1 evaluation.
  Range (min … max):  295.084 μs …    9.713 s  ┊ GC (min … max): 0.00% … 0.00%
  Time  (median):     317.166 μs               ┊ GC (median):    0.00%
@@ -615,3 +616,6 @@ Or using bitshifting and returning both the end state of reg_a and the value out
 Note that the initial values for reg_b and reg_c never are used, only the initial value of reg_a is used. And for each execution the function shifts the value in reg_a 3 bits to the right. From looking at the instructions reg_a takes on two values each iteration, the initial value and the end value. The initial value for reg_a is always the end value shifted 3 bits to the left plus a value in the interval 0 - 7. These observations made the problem easily solvable. First I implemented a function that takes the end state for reg_a and the number to be written to the output buffer and iterates through 0 to 7 checking if the function above returns the correct output value, if it does return the value of reg_a. And since the program only stops when reg_a is 0 when the jump instructions is executed the last state of reg_a is known. So to solve the problem just call the solve function using the end state of reg_a and the target output value, in this case 0, 0. And voila, the inital state of reg_a has to be 2! Now repeat this for each of the other values that we want the program to write to the output buffer. For some combinations of output values and end states for reg_a there were several possible solutions, so I wrote a BFS that tries each posible solution looking for the minimum value that reg_a has to have for the program to write itself to the output buffer.
 It think that sums up the gist of it. This was by far the hardest problem so far.
 
+## Day 18: RAM Run
+### Part one
+### Part two 
