@@ -200,18 +200,14 @@ function prioritypop!(q::Vector{Tuple{Int, Tuple{Int, Int, Int, Vector{Tuple{Int
     mp = typemax(Int)
     mt = (0, 0, 0)
     mi = 0
-    for (index, (p, t)) ∈ enumerate(q)
-        if p < mp
-            mp = p
-            mt = t
-            mi = index
-        end
+    for (i, (p, t)) ∈ enumerate(q)
+        (p < mp) && (mp = p; mt = t;  mi = i)
     end
     deleteat!(q, mi)
     return (mp, mt)
 end
 
-function dijkstra(y::Int, x::Int, f::Int, m::Matrix{Char})
+function dijkstra(y::Int, x::Int, f::Int, yd::Int, xd::Int, m::Matrix{Char})
     dirs = Dict(
         1 => [(-1, 0), (0, -1), (0, 1)], 
         2 => [(-1, 0), (1, 0), (0, 1)], 
@@ -225,7 +221,7 @@ function dijkstra(y::Int, x::Int, f::Int, m::Matrix{Char})
     while length(que) > 0
         (w, (y, x, f, p)) = prioritypop!(que)
         push!(p, (y, x))
-        (m[y, x] == 'E') && push!(paths, (w, p))
+        ((y, x) == (yd, xd)) && push!(paths, (w, p))
         for (Δy, Δx) ∈ dirs[f] 
             if m[y+Δy, x+Δx] != '#'
                 u = (y+Δy, x+Δx, getdir(Δy, Δx))
@@ -247,7 +243,7 @@ end
 function part_one(m::Matrix{Char})
     (ys, xs) = ci2t(findfirst(f->f=='S', m))
     (yd, xd) = ci2t(findfirst(f->f=='E', m))
-    (dist, paths) = dijkstra(ys, xs, 2, m)
+    (dist, _) = dijkstra(ys, xs, 2, yd, xd, m)
     d = minimum([get(dist, (yd, xd, d), typemax(Int)) for d ∈ [1, 2, 3, 4]])
     println("Part One: $(Int(d))")
 end
@@ -255,23 +251,15 @@ end
 function part_two(m::Matrix{Char})
     (ys, xs) = ci2t(findfirst(f->f=='S', m))
     (yd, xd) = ci2t(findfirst(f->f=='E', m))
-    (dist, paths) = dijkstra(ys, xs, 2, m)
+    (dist, paths) = dijkstra(ys, xs, 2, yd, xd, m)
     d = minimum([get(dist, (yd, xd, d), typemax(Int)) for d ∈ [1, 2, 3, 4]])
-    bt = Set{Tuple{Int, Int}}()
-    for (dt, path) ∈ paths
-        if dt == d
-            for t ∈ path
-                push!(bt, t)
-            end
-        end
-    end
+    bt = Set([t for (dt, path) ∈ paths for t ∈ path if dt == d])
     println("Part Two: $(length(bt))")
 end
 
 data = read_data("./Day16/data.txt")
 #data = read_data("./Day16/test.txt")
 #data = read_data("./Day16/test2.txt")
-
 
 @time part_one(data)
 @time part_two(data)

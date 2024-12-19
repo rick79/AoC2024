@@ -503,11 +503,34 @@ BenchmarkTools.Trial: 5100 samples with 1 evaluation.
 ```
 
 ## Day 16: Reindeer Maze
+Another grid problem! You have a maze and want to find the shortest path from the start to the exit. Taking one step costs 1, turning 90° costs 1000. This makes the maze a weighted graph.
 ### Part one
+I haven't done Dijkstra's algorithm in Julia yet! I implemented an more or less textbook version of Dijkstras and a weight function that takes the direction you're facing and the direction you want to move in and returns the cost (1 or 1001). Could probably have optimised it by not storing the distance to every node. Since each node is identified by it's position in the grid and your facing we have to check the shortest distance to the end position coming from every direction.
 ```
+BenchmarkTools.Trial: 10 samples with 1 evaluation.
+ Range (min … max):  512.559 ms … 576.512 ms  ┊ GC (min … max): 24.28% … 31.23%
+ Time  (median):     520.959 ms               ┊ GC (median):    25.51%
+ Time  (mean ± σ):   536.426 ms ±  26.840 ms  ┊ GC (mean ± σ):  26.97% ±  3.06%
+
+  ▁█▁ ▁      ▁                              ▁     ▁      ▁    ▁  
+  ███▁█▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁█▁▁▁▁▁▁█▁▁▁▁█ ▁
+  513 ms           Histogram: frequency by time          577 ms <
+
+ Memory estimate: 3.11 GiB, allocs estimate: 1540987.
 ```
 ### Part two
+In part two you want to find all positions in the grid that lies on a shortest path (there can be several shortest paths with the same length). I kept the path leading up to each position and appended it along with the path distance to a list of paths when reaching the end position. I then constructed a set of the positions with the shortest path distance and counted the number of elements in the set.
 ```
+BenchmarkTools.Trial: 9 samples with 1 evaluation.
+ Range (min … max):  553.057 ms … 608.418 ms  ┊ GC (min … max): 29.60% … 35.53%
+ Time  (median):     591.316 ms               ┊ GC (median):    31.41%
+ Time  (mean ± σ):   586.232 ms ±  18.936 ms  ┊ GC (mean ± σ):  32.33% ±  2.22%
+
+  █             █      █          █         █    █ █         ██  
+  █▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁█▁▁▁▁█▁█▁▁▁▁▁▁▁▁▁██ ▁
+  553 ms           Histogram: frequency by time          608 ms <
+
+ Memory estimate: 3.11 GiB, allocs estimate: 1541011.
 ```
 
 ## Day 17: Chronospatial Computer
@@ -619,3 +642,34 @@ It think that sums up the gist of it. This was by far the hardest problem so far
 ## Day 18: RAM Run
 ### Part one
 ### Part two 
+
+## Day 19: Linen Layout
+After yesterdays headache todays easier problems was welcome. You want to sort out towels made from different arrangements of patterns. As puzzle input you are given the available patterns and a list of designs. Both the patterns and designs are made of the characters w, u, b, r, and g.
+### Part one
+For part one your task is to verify if the designs you are given are possible to construct using the patterns. Firstly I tried to check the designs using a que that checks if a design starts, it kinda worked but took forever to run. So memoization it is. I remplemented my solution as a recursive function that caches the result for a given string. The function checks if the design begins with each pattern, if it does it calls itself using the design with the pattern removed from the beginning. Return true if called with an empty design. If any of the patterns generate a true, the design is valid. For the memoization I used a globally declared dictionary. When called the function checks if the string denoting the design is in the dictionary. If it is return its value. At the end of the function set the key to the return value. I should really check if there is a good memoization/cache library for Julia.
+```
+BenchmarkTools.Trial: 10000 samples with 1 evaluation.
+ Range (min … max):   73.125 μs …   3.166 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):      89.792 μs              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   412.244 μs ± 31.660 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
+
+     ▆▅█▆▄▃▂▁▁                                                  
+  ▂▅▇██████████▇▅▅▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
+  73.1 μs         Histogram: frequency by time          197 μs <
+
+ Memory estimate: 264 bytes, allocs estimate: 10.
+ ```
+### Part two
+Part two was almost the same as part one. Instead of returning true if called with an empty design return 1. And instead of checking if any call returns true sum the returned values from all calls. I ran into a problem that I'm not used to from R, Julias sum function doesn't handle neither of nothing or emtpy vectors. Programatically it makes sense, but from an analytical perspecive...
+```
+BenchmarkTools.Trial: 10000 samples with 1 evaluation.
+ Range (min … max):   82.250 μs …  10.405 ms  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     102.541 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   122.908 μs ± 249.226 μs  ┊ GC (mean ± σ):  0.22% ± 1.49%
+
+    ▂▅█▇                                                         
+  ▃▄█████▆▄▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▂▂▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▁▁▂▂▁▁▂ ▃
+  82.2 μs          Histogram: frequency by time          337 μs <
+
+ Memory estimate: 11.45 KiB, allocs estimate: 725.
+ ```
