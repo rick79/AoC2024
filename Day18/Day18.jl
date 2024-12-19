@@ -166,7 +166,7 @@ end
 function part_one(data::Vector{Tuple{Int, Int}}, test=false)
     height = test ? 6 : 70
     width = test ? 6 : 70
-    (d, p) = bfs(0, 0, height, width, test ? 12 : 1024, data)
+    (d, _) = bfs(0, 0, height, width, test ? 12 : 1024, data)
     println("Part One: $d")
 end
 
@@ -190,6 +190,7 @@ end
 
 #data = read_data("./Day18/test.txt")
 data = read_data("./Day18/data.txt")
+
 
 @time part_one(data)
 @time part_two(data)
