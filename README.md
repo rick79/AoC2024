@@ -656,7 +656,7 @@ BenchmarkTools.Trial: 105 samples with 1 evaluation.
  Memory estimate: 294.04 MiB, allocs estimate: 54579.
  ```
 ### Part two 
-In part two we need to find out how many locations that can be corrupted after 1024 nanoseconds before all paths to the exit are closed. I used the same BFS as for part one. When I had a path I checked for the first corrupted location that would block this path, calulated a new path, and then continued checking the next location to be corrupted and so on. I am not happy with this solution, it takes about 2 seconds to run and allocates too much memory.
+In part two we need to find out how many locations that can be corrupted after 1024 nanoseconds before all paths to the exit are closed. I used the same BFS as for part one. When I had a path I checked for the first corrupted location that would block this path, calulated a new path, and then continued checking the next location to be corrupted and so on. I am not happy with this solution, it takes about 2 seconds to run and allocates too much memory. Perhaps the solution from day 16 would work to find all paths between start and stop and then remove paths based on corrupted locations.
 ```
 BenchmarkTools.Trial: 3 samples with 1 evaluation.
  Range (min … max):  1.969 s …   2.120 s  ┊ GC (min … max): 25.43% … 28.03%
@@ -699,4 +699,35 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation.
   82.2 μs          Histogram: frequency by time          337 μs <
 
  Memory estimate: 11.45 KiB, allocs estimate: 725.
+ ```
+
+ ## Day 20: Race Condition
+You are at a racetrack with **one** path from start to finish. Both you and your opponent move one step each picosecond. You are allowed to cheat one time during the race by ignoring walls so that you can move from one part of the track to another. In order to win you have to cheat when it will gain you the maximum benefit. Find how many cheats there are that will gain you at least 100 picoseconds.
+ ### Part one
+ In part one you are allowed to ignore walls for 2 picoseconds when you cheat. I spent too much time on this problem, the cause: I didn't include the end node when considering to where I could move when cheating. To find the path I used Dijkstras algorithm (again). My first idea was to walk through the track one step at a time and check what would happend if one wall wouldn't be there. While it worked, it took forever to run. My next idea was to walk through the track one step at the time and check where I would end up if I moved two steps in those directions that had walls. This worked better. I then generalised this idea to for each step check what later parts of the track lies within a manhattan distance of 2, I could then calculate the shortcut by subtracking the index of the former from the index of the latter minus the distance of 2 spaces between the two points.
+ ```
+ BenchmarkTools.Trial: 44 samples with 1 evaluation.
+ Range (min … max):  105.002 ms … 152.923 ms  ┊ GC (min … max): 24.01% … 46.34%
+ Time  (median):     112.830 ms               ┊ GC (median):    28.26%
+ Time  (mean ± σ):   114.048 ms ±   7.953 ms  ┊ GC (mean ± σ):  29.61% ±  3.93%
+
+    █ ▂▂▂▂  ▂▂ ▂   ▂                                             
+  ▅▁██████▅▅██▁█▅█▅█▁▅▅▁█▁▁▁▁▁▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▅ ▁
+  105 ms           Histogram: frequency by time          153 ms <
+
+ Memory estimate: 669.03 MiB, allocs estimate: 37326.
+ ```
+ ### Part two
+ In part two the time that you can ignore walls for a cheat is increased to 20 picoseconds. The same solution from part one worked with the addition of finding all latter parts of the path that is within a manhattan distance of no more than 20 and then take the difference between indices minus the manhattan distance between the points. At first this solution took ~10 s to run, but after realising that I already had the indices for all points and thus being able to remove all unnecesary searches for indices and a few other optimisations I managed to reduce the runtime to ~110 ms. Pretty happy about that.
+ ```
+ BenchmarkTools.Trial: 42 samples with 1 evaluation.
+ Range (min … max):  101.116 ms … 158.581 ms  ┊ GC (min … max): 20.59% … 48.68%
+ Time  (median):     109.158 ms               ┊ GC (median):    25.74%
+ Time  (mean ± σ):   118.791 ms ±  18.795 ms  ┊ GC (mean ± σ):  31.44% ±  9.08%
+
+      ▃ █ ▁                                                      
+  ▄▇▄▇█▄█▇█▇▇▄▁▇▁▁▄▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▄▄▁▁▁▁▇▁▄▄▇▄▁▁▄▁▁▁▄ ▁
+  101 ms           Histogram: frequency by time          159 ms <
+
+ Memory estimate: 673.43 MiB, allocs estimate: 37338.
  ```
