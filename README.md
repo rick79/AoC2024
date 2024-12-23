@@ -731,3 +731,43 @@ You are at a racetrack with **one** path from start to finish. Both you and your
 
  Memory estimate: 673.43 MiB, allocs estimate: 37338.
  ```
+
+ ## Day 21:
+ ### Part one
+ ```
+ ```
+ ### Part two
+ ```
+ ```
+
+ ## Day 22:
+ ### Part one
+ ```
+ ```
+ ### Part two
+ ```
+ ```
+
+ ## Day 23:
+ ### Part one
+ ```
+ ```
+ ### Part two
+ ```
+ ```
+
+ ## Day 24:
+ ### Part one
+ ```
+ ```
+ ### Part two
+ ```
+ ```
+
+ ## Day 25:
+ ### Part one
+ ```
+ ```
+ ### Part two
+ ```
+ ```
