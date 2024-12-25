@@ -1,4 +1,6 @@
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
 Match = "7eb4fadd-790c-5f42-8a69-bfa0b872bfbf"
 Memoization = "6fafb56a-5788-4b4e-91ca-c0cea6611c73"
+Permutations = "2ae35dd2-176d-5d53-8349-f30d82d94d4f"

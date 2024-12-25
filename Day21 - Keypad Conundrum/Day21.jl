@@ -65,50 +65,8 @@ function get_path(s::Char, e::Char, prev:: Dict{Char, Char})
     return S
 end
 
-function floyd_warshall(m::Matrix{Union{Nothing, Char}})
-    dist = Dict{Tuple{Char, Char}, Float16}()
-    for u ∈ m
-        for v ∈ m
-            if !isnothing(u) && !isnothing(v)
-                dist[(u, v)] = Inf
-            end
-        end
-    end
-    for u ∈ m
-        if !isnothing(u)
-            dist[(u, u)] = 0
-        end
-    end
-    for u ∈ m
-        if !isnothing(u)
-            (d, p) = dijkstra(u, m)
-            for v ∈ m
-                if !isnothing(v)
-                    dist[(u, v)] = d[v]
-                end
-            end
-        end
-    end
-    for k ∈ m
-        for i ∈ m
-            for j ∈ m
-                if !isnothing(k) && !isnothing(i) && !isnothing(j)
-                    if dist[(i, j)] > dist[(i, k)] + dist[(k, j)]
-                        dist[(i, j)] = dist[(i, k)] + dist[(k, j)]
-                    end
-                end
-            end
-        end
-    end
-    return dist
-end
-
-
-
-
 Memoization.empty_cache!(dijkstra)
 function part_one(data::Vector{String})
-    
     numeric = Matrix{Union{Nothing, Char}}(['7' '8' '9'; '4' '5' '6'; '1' '2' '3'; nothing '0' 'A'])
     direction = Matrix{Union{Nothing, Char}}([nothing '^' 'A'; '<' 'v' '>';])
     num_paths = Dict{Char, Dict{Char, Vector{Vector{Char}}}}()
@@ -126,15 +84,15 @@ function part_one(data::Vector{String})
         end
     end
     curr_num = 'A'
+
     
-    for code ∈ data
+
+    for code ∈ ["029A"] #data
         for c ∈ code
             nc = num_paths[curr_num][c]
-            
-
-    
-
-
+            println(nc)
+        end
+    end
     println("Part one: ")
 end
 
@@ -154,4 +112,4 @@ end
 data = read_data("./Day21 - Keypad Conundrum/data.txt")
 
 @time part_one(data)
-@time part_two(data)
+#@time part_two(data)
