@@ -8,11 +8,9 @@ function read_data(path::String)
         wires[m[1]] = parse(Bool, m[2])
     end
     for line ∈ split(parts[2], "\n")
-
         m = match(r"^([a-z]+[\d]*) (AND|XOR|OR) ([a-z]+[\d]*) -> ([a-z]+[\d]*)$", line)
         push!(instructions, (m[1], m[2], m[3], m[4]))
     end
-
     return (wires, instructions)
 end
 
@@ -43,8 +41,6 @@ function run(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, Strin
     end
     return wires
 end
-
-
 
 function part_one(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, String, String, String}})
     wires = run(wires, instructions)
@@ -91,7 +87,7 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
         end
         w[string("y", lpad(i, 2, '0'))] = 0
     end
-    println("The bits that are faulti are: $(sort(collect(faulty)))")
+    println("The bits that are faulty are: $(sort(collect(faulty)))")
     # [11, 15, 19, 37]
     #=
           Z
@@ -121,7 +117,7 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
     qqw XOR gkc -> wpd
             |
             v
-        wpd, z11
+    Switch: wpd, z11
             |
             v
     gkc AND qqw -> wpd
@@ -136,7 +132,7 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
     rkt AND skh -> kjk
             |
             v
-        skh, jqf
+    Switch: skh, jqf
             |
             v
     skh XOR rkt -> z15
@@ -151,7 +147,7 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
     cmp AND wfc -> pbb
             |
             v
-        z19, mdd
+    Switch: z19, mdd
             |
             v
     cmp AND wfc -> z19
@@ -166,7 +162,7 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
     y37 AND x37 -> rhh
             |
             v
-        wts, z37
+    Switch: wts, z37
             |
             v
     jgw OR rhh -> wts
@@ -175,8 +171,6 @@ function part_two(wires::Dict{String, Bool}, instructions::Vector{Tuple{String, 
     y37 AND x37 -> rhh
     y37 XOR x37 -> wpp
     =#
-
-
 end
 
 #wires, instructions = read_data("./Day24 - Crossed Wires/test.txt")
@@ -185,4 +179,4 @@ end
 wires, instructions = read_data("./Day24 - Crossed Wires/data.txt")
 
 @time part_one(wires, instructions)
-part_two(wires, instructions)
+@time part_two(wires, instructions)
