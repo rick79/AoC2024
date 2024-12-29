@@ -81,3 +81,34 @@ Once again consider your left and right lists. **What is their similarity score?
 Your puzzle answer was `19097157`.
 
 **Both parts of this puzzle are complete! They provide two gold stars: \*\*** 
+
+## My solution
+Staring with two easy problems. You have two lists of locations (numbers) and want to compare how similar they are. Both part one and part two were solved in one line each after the input was parsed. Learned about broadcasting and working with arrays in Julia. 
+### Part one
+In the part one you want to find the distance between the lists by sorting them and calculate and sum pairwise distance between the lists. Easily done with vector subtraction, broadcasting abs and summing the resulting vector.
+```
+BenchmarkTools.Trial: 10000 samples with 1 evaluation.
+ Range (min … max):   63.708 μs …   2.271 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):      84.875 μs              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   316.840 μs ± 22.705 ms  ┊ GC (mean ± σ):  0.86% ± 2.15%
+
+          ▃▄▄▅▆███▇▆▄▂                                          
+  ▁▂▂▃▃▅▅▇██████████████▆▅▅▄▃▂▃▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
+  63.7 μs         Histogram: frequency by time          148 μs <
+
+ Memory estimate: 41.09 KiB, allocs estimate: 30.
+```
+### Part two
+In part two you want to find how similar the two list are by calculating a similarity score by multiplying the numbers from the left hand side list with the number of times they appear in the right hand side list and summing these values. Used findall to count the number of times a left hand value occurs in the right hand side and map to multiply the left hand side with the number of occurances.
+```
+BenchmarkTools.Trial: 7221 samples with 1 evaluation.
+ Range (min … max):  295.084 μs …    9.713 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     317.166 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):     1.688 ms ± 114.304 ms  ┊ GC (mean ± σ):  0.61% ± 5.93%
+
+   ▃▇█▇▇▆▅▄▄▃▃▂▂▁▁                                              ▂
+  ███████████████████▇▇▆▇▆▅▆▆▇▅▆▇▆▆▅▆▅▁▅▅▃▃▅▃▃▅▃▁▁▁▃▁▄▁▃▃▁▁▁▁▁▅ █
+  295 μs        Histogram: log(frequency) by time        602 μs <
+
+ Memory estimate: 262.32 KiB, allocs estimate: 4052.
+```
