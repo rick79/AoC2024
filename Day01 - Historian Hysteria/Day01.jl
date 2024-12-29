@@ -11,11 +11,15 @@ end
 
 
 function part_one(lhs::Vector{Int}, rhs::Vector{Int})
-    println(string("Part One: ", sum(abs.(sort(rhs) - sort(lhs)))))
+    res = sum(abs.(sort(rhs) - sort(lhs)))
+    @assert res == 2113135
+    println("Part One: $res")
 end
 
 function part_two(lhs::Vector{Int}, rhs::Vector{Int})
-    println(string("Part Two: ", sum(map(l->l * length(findall(r->r == l, rhs)), lhs))))
+    res = sum(map(l->l * length(findall(r->r == l, rhs)), lhs))
+    @assert res == 19097157
+    println("Part Two: $res" )
 end
 
 #(lhs, rhs) = read_data("./Day01 - Historian Hysteria/test.txt")
