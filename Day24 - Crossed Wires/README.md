@@ -268,7 +268,7 @@ y11 XOR x11 -> gkc
 qqw XOR gkc -> z11
 ```
 
-***Bit 15:***
+**Bit 15:**
 ```
 skh XOR rkt -> z15
 x15 XOR y15 -> jqf
@@ -287,7 +287,7 @@ x15 AND y15 -> jqf
 x15 XOR y15 -> skh
 ```
 
-***Bit 19:***
+**Bit 19:**
 ```
 y19 AND x19 -> z19
 x19 XOR y19 -> cmp
