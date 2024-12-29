@@ -1,24 +1,12 @@
-using Memoization
-
 function read_data(path::String)
-    lines = readlines(path)
-    return lines
+    return readlines(path)
 end
 
 function ci2t(ci::CartesianIndex)
     return !isnothing(ci) ? (ci[1], ci[2]) : nothing
 end
 
-function print_matrix(matrix::Matrix)
-    for y ∈ axes(matrix, 1)
-        for x ∈ axes(matrix, 2)
-            print(matrix[y, x])
-        end
-        println()
-    end
-end
-
-@memoize function dijkstra(c::Char, m::Matrix{Union{Nothing, Char}})
+function dijkstra(c::Char, m::Matrix{Union{Nothing, Char}})
     height = last(axes(m, 1))
     width = last(axes(m, 2))
     (y, x) = ci2t(findfirst(f->f==c, m))
@@ -52,21 +40,7 @@ end
     return (dist, prev, paths)
 end
 
-function get_path(s::Char, e::Char, prev:: Dict{Char, Char})
-    u = prev[e]
-    S = Vector{Char}()
-    if haskey(prev, u) || u == s
-        while !isnothing(u)
-            pushfirst!(S, u)
-            u = get(prev, u, nothing)
-        end
-        push!(S, e)
-    end
-    return S
-end
-
-Memoization.empty_cache!(dijkstra)
-function part_one(data::Vector{String})
+function setup()
     numeric = Matrix{Union{Nothing, Char}}(['7' '8' '9'; '4' '5' '6'; '1' '2' '3'; nothing '0' 'A'])
     direction = Matrix{Union{Nothing, Char}}([nothing '^' 'A'; '<' 'v' '>';])
     num_paths = Dict{Char, Dict{Char, Vector{Vector{Char}}}}()
@@ -83,33 +57,102 @@ function part_one(data::Vector{String})
             dir_paths[d] = paths
         end
     end
-    curr_num = 'A'
+    return (num_paths, dir_paths)
+end
 
-    
+function get_direction(from::Char, to::Char)
+    m = (from ∈ ['7' '8' '9' '4' '5' '6' '1' '2' '3' nothing '0' 'A'] && to ∈ ['7' '8' '9' '4' '5' '6' '1' '2' '3' nothing '0' 'A']) ? Matrix{Union{Nothing, Char}}(['7' '8' '9'; '4' '5' '6'; '1' '2' '3'; nothing '0' 'A']) : Matrix{Union{Nothing, Char}}([nothing '^' 'A'; '<' 'v' '>';])
+    f = findfirst(f->f==from, m)
+    t = findfirst(f->f==to, m)
+    return t-f
+end
 
-    for code ∈ ["029A"] #data
-        for c ∈ code
-            nc = num_paths[curr_num][c]
-            println(nc)
+function press(curr::Char, to::Char, dict_paths::Dict{Char, Dict{Char, Vector{Vector{Char}}}})
+    curr == to && return (curr, ["A"])
+    res = Vector{String}()
+    nc = dict_paths[curr][to]
+    for n ∈ nc
+        path = Vector{Char}()
+        for i ∈ 2:last(axes(n, 1))
+            d = get_direction(n[i-1], n[i])
+            d == CartesianIndex(-1, 0) && push!(path, '^')
+            d == CartesianIndex(1, 0) && push!(path, 'v')
+            d == CartesianIndex(0, 1) && push!(path, '>')
+            d == CartesianIndex(0, -1) && push!(path, '<')
         end
+        push!(path, 'A')
+        curr = n[end]
+        push!(res, join(path, ""))
     end
-    println("Part one: ")
+    return (curr, res)
 end
 
-
-function part_two(data)
-    println("Part two: ")
+function remote_press(code::String, n::Int, num_paths::Dict{Char, Dict{Char, Vector{Vector{Char}}}}, dir_paths::Dict{Char, Dict{Char, Vector{Vector{Char}}}})
+    cache = Dict{String, Int}()
+    function rp(code::String, n::Int, isnumeric::Bool)
+        n == 0 && return length(code)
+        id = string(code, ":", n)
+        haskey(cache, id) && return cache[id]
+        curr = 'A'
+        res = Vector{String}()
+        for c ∈ code
+            (curr, paths) = press(curr, c, isnumeric ? num_paths : dir_paths)
+            if length(res) == 0
+                for path ∈ paths
+                    push!(res, path)
+                end
+            else
+                newres = Vector{String}()
+                for r ∈ res
+                    for path ∈ paths
+                        push!(newres, string(r, path))
+                    end
+                end
+                res = newres
+            end
+        end
+        minres = Vector{Int}()
+        for r ∈ res
+            rsum = 0
+            inds = findall(f->f=='A', r)
+            pi = 1
+            for i ∈ inds
+                rsum = rsum + rp(r[pi:i], n-1, false)
+                pi = i+1
+            end
+            push!(minres, rsum)
+        end
+        res = minimum(minres)
+        cache[id] = res
+        return res
+    end
+    return rp(code, n, true)
 end
 
+function part_one(codes::Vector{String})
+    (num_paths, dir_paths) = setup()
+    res = 0
+    for code ∈ codes
+        minlen = remote_press(code, 3, num_paths, dir_paths)
+        complexity = parse(Int, code[1:(end-1)]) * minlen
+        res += complexity
+    end
+    println("Part One: $res")
+end
 
-
-
-
-
-
+function part_two(codes::Vector{String})
+    (num_paths, dir_paths) = setup()
+    res = 0
+    for code ∈ codes
+        minlen = remote_press(code, 26, num_paths, dir_paths)
+        complexity = parse(Int, code[1:(end-1)]) * minlen
+        res += complexity
+    end
+    println("Part Two: $res")
+end
 
 #data = read_data("./Day21 - Keypad Conundrum/test.txt")
 data = read_data("./Day21 - Keypad Conundrum/data.txt")
 
 @time part_one(data)
-#@time part_two(data)
+@time part_two(data)
