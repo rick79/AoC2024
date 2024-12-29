@@ -137,6 +137,7 @@ function part_one(codes::Vector{String})
         complexity = parse(Int, code[1:(end-1)]) * minlen
         res += complexity
     end
+    @assert res == 152942
     println("Part One: $res")
 end
 
@@ -148,6 +149,7 @@ function part_two(codes::Vector{String})
         complexity = parse(Int, code[1:(end-1)]) * minlen
         res += complexity
     end
+    @assert res == 189235298434780
     println("Part Two: $res")
 end
 
