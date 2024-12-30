@@ -10,6 +10,7 @@ end
 
 function part_one(reports::Vector{Vector{Int}})
     res = sum([check(report) for report ∈ reports])
+    @assert res == 631
     println("Part One: $res")
 end
 
@@ -27,6 +28,7 @@ function part_two(reports::Vector{Vector{Int}})
             end
         end
     end
+    @assert res == 665
     println("Part Two: $res")
 end
 
