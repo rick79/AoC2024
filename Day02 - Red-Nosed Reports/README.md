@@ -62,11 +62,11 @@ Update your analysis by handling situations where the Problem Dampener can remov
 
 Your puzzle answer was 665.
 
-Both parts of this puzzle are complete! They provide two gold stars: **
+**Both parts of this puzzle are complete! They provide two gold stars: \*\***
 
 ## My solution
 ## Part one
-Given a sequence of N numbers, create a boolean vector of length N-1 where the values are determined by wether the n:th number from the sequence is at a distance of at least `1` and at most `3` from the n+1:th number of the sequence and that the n:th number is less than the n+1:th. Repeat but with the n:th number being more than the n+1:th number. Multiply each boolean list to check if all the values are true.
+Given a sequence of N numbers, create a boolean vector of length `N-1` where the values are determined by wether the n:th number from the sequence is at a distance of at least `1` and at most `3` from the `n+1`:th number of the sequence and that the `n`:th number is less than the `n+1`:th. Repeat but with the `n`:th number being greater than the `n+1`:th number. Multiply each boolean list to check if all the values are true.
 ```
 BenchmarkTools.Trial: 9261 samples with 1 evaluation.
  Range (min … max):  100.208 μs …   3.946 s  ┊ GC (min … max): 0.00% … 0.00%
