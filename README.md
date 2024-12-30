@@ -18,40 +18,12 @@ Learned about anonymous functions as arguments.
 ## Day 6: Guard Gallivant
 Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.5 s for part to by just switching an array to a set).
 
-
-
-
-
 ## Day 7: Bridge Repair
-Another easy day if you have a lot of processor to work with. Build a tree with numbers based on a set of possible permutations of operators. Learned about using recursive functions and first class functions. 
-### Part one
-For part one you have the operators + and *.
-```
-BenchmarkTools.Trial: 59 samples with 1 evaluation.
- Range (min … max):  81.169 ms … 87.673 ms  ┊ GC (min … max): 3.16% … 9.38%
- Time  (median):     85.300 ms              ┊ GC (median):    7.27%
- Time  (mean ± σ):   85.250 ms ±  1.033 ms  ┊ GC (mean ± σ):  7.25% ± 0.93%
+Learned about using recursive functions and first class functions. 
 
-                                  ▁▁▁█  █▃                     
-  ▄▁▁▁▁▁▁▁▁▁▄▁▁▁▁▁▁▁▄▁▁▁▁▁▁▆▁▁▁▁▄▄████▄▇██▆▇▆▁▆▁▁▁▄▄▁▁▄▁▁▁▄▁▄ ▁
-  81.2 ms         Histogram: frequency by time        87.7 ms <
 
- Memory estimate: 124.50 MiB, allocs estimate: 3472338.
-```
-### Part two
-For part two you'll have an additional operator: +, * and concatenation. Runs slow as heck, not happy at all with this solution.
-```
-BenchmarkTools.Trial: 2 samples with 1 evaluation.
- Range (min … max):  4.533 s …  4.540 s  ┊ GC (min … max): 8.59% … 8.44%
- Time  (median):     4.536 s             ┊ GC (median):    8.52%
- Time  (mean ± σ):   4.536 s ± 4.908 ms  ┊ GC (mean ± σ):  8.52% ± 0.11%
 
-  █                                                      █  
-  █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█ ▁
-  4.53 s        Histogram: frequency by time        4.54 s <
 
- Memory estimate: 6.96 GiB, allocs estimate: 203006554.
-```
 
 ## Day 8: Resonant Collinearity
 Two straightforward problems. Given a set of points with given types on a map, calculate points extending on a line from each pair of points with the same type at the same intervals as the initial points. Learned about unpacking tuples in anonymous functions.
