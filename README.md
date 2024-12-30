@@ -19,42 +19,15 @@ Learned about anonymous functions as arguments.
 Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.5 s for part to by just switching an array to a set).
 
 ## Day 7: Bridge Repair
-Learned about using recursive functions and first class functions. 
-
-
-
-
+Learned about using recursive functions, first class functions and the splat (`...`) operator. 
 
 ## Day 8: Resonant Collinearity
-Two straightforward problems. Given a set of points with given types on a map, calculate points extending on a line from each pair of points with the same type at the same intervals as the initial points. Learned about unpacking tuples in anonymous functions.
-### Part one
-For part one only calculate one point in each direction.
-```
-BenchmarkTools.Trial: 3116 samples with 1 evaluation.
- Range (min … max):  254.250 μs …    6.865 s  ┊ GC (min … max): 0.00% …  0.00%
- Time  (median):     322.438 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):     2.608 ms ± 122.981 ms  ┊ GC (mean ± σ):  3.15% ± 14.93%
+Learned about unpacking tuples in anonymous functions.
 
-  ▇██▅▃                                                         ▁
-  ███████▆▆▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▃▃▅▃▅▁▅▆▆▅▇▇▆▆ █
-  254 μs        Histogram: log(frequency) by time       2.42 ms <
 
- Memory estimate: 1.35 MiB, allocs estimate: 3628.
-```
-### Part two
-For part two calculate every point that falls within the map limits.
-```
-BenchmarkTools.Trial: 9140 samples with 1 evaluation.
- Range (min … max):  369.541 μs …  17.421 ms  ┊ GC (min … max):  0.00% … 96.76%
- Time  (median):     438.812 μs               ┊ GC (median):     0.00%
- Time  (mean ± σ):   542.154 μs ± 572.154 μs  ┊ GC (mean ± σ):  14.80% ± 16.87%
 
-  ▇▇█▇▅▃▂▂▁                                         ▁           ▂
-  █████████▇▇▇▆▄▁▃▄▃▃▁▁▃▄▁▃▁▃▁▁▃▁▁▃▄▄▅▅▅▆▇▇▆▇▇█▇██▇▇███▇▇▇▇▇▇▆▇ █
-  370 μs        Histogram: log(frequency) by time       2.13 ms <
 
- Memory estimate: 1.42 MiB, allocs estimate: 3391.
-```
+
 
 ## Day 9: Disk Fragmenter
 Todays problem was defragging a set consisting of numbers and empty spaces beteen numbers. Learned to not rely too much on recursion and iterating through arrays. And learned how to benchmark and time function calls.
