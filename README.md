@@ -11,34 +11,7 @@ This day was solved easily with regex. Learned how to use regex in Julia and how
 
 ## Day 4: Ceres Search
 Day 4 was a xmas mess. Not that the problems were that hard, just that my solution was tedious. You are given a matrix with characters and want to search for the word XMAS written in different directions. Solved both part one and part two by iterating through thea matrix looking for patterns using conditional statements. Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
-### Part one
-In part one you're looking for the word XMAS written horizontally, vertically, diagonally, from left to right and right to left.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  259.708 μs …  10.549 ms  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     280.167 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   295.819 μs ± 226.561 μs  ┊ GC (mean ± σ):  0.00% ± 0.00%
 
-     ▃▆▇█▅▃▁                                                     
-  ▁▄▇████████▆▆▅▅▄▃▃▃▂▂▂▂▂▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▂
-  260 μs           Histogram: frequency by time          424 μs <
-
- Memory estimate: 280 bytes, allocs estimate: 11.
- ```
- ### Part two
- In part two you're looking for x:es made of the word MAS written in every possible way.
- ```
- BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  152.333 μs …   2.814 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     176.458 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   462.514 μs ± 28.139 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
-
-       ▃▅▆██▇▆▆▅▄▃▁▁                                            
-  ▂▁▃▄▇█████████████▇▇▆▄▄▄▃▃▃▂▃▂▂▂▂▂▁▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
-  152 μs          Histogram: frequency by time          271 μs <
-
- Memory estimate: 280 bytes, allocs estimate: 11.
- ```
 
 ## Day 5: Print Queue
 You are given a set of rules that defines an order of numbers in a sequence and a list of number sequences. Learned about anonymous functions as arguments. 
