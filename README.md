@@ -1,19 +1,19 @@
 # Advent of Code 2024
 Trying to learn Julia this year.
 ## Day 1: Historian Hysteria
-Staring with two easy problems. You have two lists of locations (numbers) and want to compare how similar they are. Both part one and part two were solved in one line each after the input was parsed. Learned about broadcasting and working with arrays in Julia. 
+Learned about broadcasting and working with arrays in Julia. 
 
 ## Day 2: Red-Nosed Reports
-Another day with simple problems. Learned about constructing arrays comprehensiouns ([x for x in y]). I foresee that my code will be less readable from now on. 
+Learned about constructing arrays comprehensiouns ([x for x in y]). I foresee that my code will be less readable from now on. 
 
 ## Day 3: Mull It Over
-This day was solved easily with regex. Learned how to use regex in Julia and how to work with matrices.
+Learned how to use regex in Julia and how to work with matrices.
 
 ## Day 4: Ceres Search
-Day 4 was a xmas mess. Not that the problems were that hard, just that my solution was tedious. You are given a matrix with characters and want to search for the word XMAS written in different directions. Solved both part one and part two by iterating through thea matrix looking for patterns using conditional statements. Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
+Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
 
 ## Day 5: Print Queue
-You are given a set of rules that defines an order of numbers in a sequence and a list of number sequences. Learned about anonymous functions as arguments. 
+Learned about anonymous functions as arguments. 
 
 ## Day 6: Guard Gallivant
 Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.5 s for part to by just switching an array to a set).
