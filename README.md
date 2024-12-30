@@ -2,65 +2,10 @@
 Trying to learn Julia this year.
 ## Day 1: Historian Hysteria
 Staring with two easy problems. You have two lists of locations (numbers) and want to compare how similar they are. Both part one and part two were solved in one line each after the input was parsed. Learned about broadcasting and working with arrays in Julia. 
-### Part one
-In the first part you want to find the distance between the lists by sorting them and calculate and sum pairwise distance between the lists. The sistance is calculated by sorting the lists and then taking the sum of the absolute values of the right hand side list pairwise subtracted from the left hand side list.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):   63.708 μs …   2.271 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):      84.875 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   316.840 μs ± 22.705 ms  ┊ GC (mean ± σ):  0.86% ± 2.15%
-
-          ▃▄▄▅▆███▇▆▄▂                                          
-  ▁▂▂▃▃▅▅▇██████████████▆▅▅▄▃▂▃▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
-  63.7 μs         Histogram: frequency by time          148 μs <
-
- Memory estimate: 41.09 KiB, allocs estimate: 30.
-```
-### Part two
-In part two you want to find how similar the two list are by calculating a similarity score. The similarity score is calculated by multiplying the numbers from the left hand side list with the number of times they appear in the right hand side list and summing these values.
-```
-BenchmarkTools.Trial: 7221 samples with 1 evaluation.
- Range (min … max):  295.084 μs …    9.713 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     317.166 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):     1.688 ms ± 114.304 ms  ┊ GC (mean ± σ):  0.61% ± 5.93%
-
-   ▃▇█▇▇▆▅▄▄▃▃▂▂▁▁                                              ▂
-  ███████████████████▇▇▆▇▆▅▆▆▇▅▆▇▆▆▅▆▅▁▅▅▃▃▅▃▃▅▃▁▁▁▃▁▄▁▃▃▁▁▁▁▁▅ █
-  295 μs        Histogram: log(frequency) by time        602 μs <
-
- Memory estimate: 262.32 KiB, allocs estimate: 4052.
-```
 
 ## Day 2: Red-Nosed Reports
-Another day with simple problems. Learned about constructing arrays with [x for x in y]. I foresee that my code will be less readable from now on. 
-### Part one
-Given a list with number sequences, check if a sequence of numbers is in either increasing och decreasing order. Adjecent numbers can differ by [1-3]. Find the number of sequences that are in order.
-```
-BenchmarkTools.Trial: 7982 samples with 1 evaluation.
- Range (min … max):  108.458 μs …   5.486 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     125.750 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   830.340 μs ± 61.407 ms  ┊ GC (mean ± σ):  0.72% ± 5.08%
+Another day with simple problems. Learned about constructing arrays comprehensiouns ([x for x in y]). I foresee that my code will be less readable from now on. 
 
-    ▁▆█▅▃                                                       
-  ▂▃██████▆▅▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▁▂▁▁▂▂▂▁▂▁▂▁▂ ▃
-  108 μs          Histogram: frequency by time          302 μs <
-
- Memory estimate: 126.37 KiB, allocs estimate: 4013.
-```
-### Part two
-Given a list with number sequences, check if they are in order and if not if they can be made to be in order by removing exactly one number.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  322.166 μs …  17.925 ms  ┊ GC (min … max):  0.00% …  0.00%
- Time  (median):     352.125 μs               ┊ GC (median):     0.00%
- Time  (mean ± σ):   444.207 μs ± 558.401 μs  ┊ GC (mean ± σ):  11.70% ± 12.53%
-
-  █▆▄▃▂▁▁                                                       ▁
-  █████████▇▇▇▆▇▆▅▃▅▄▅▅▃▅▄▄▄▃▄▃▁▅▁▄▃▁▁▄▄▁▁▃▃▁▁▁▁▁▃▁▁▄▁▆▆▇█▆▇▆▆▆ █
-  322 μs        Histogram: log(frequency) by time       2.59 ms <
-
- Memory estimate: 862.93 KiB, allocs estimate: 24644.
-```
 
 ## Day 3: Mull It Over
 This day was solved easily with regex. Learned how to use regex in Julia and how to work with matrices.
