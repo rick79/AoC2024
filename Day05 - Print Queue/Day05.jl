@@ -58,8 +58,5 @@ end
 
 #(updates, rules) = read_data("./Day05 - Print Queue/test.txt")
 (updates, rules) = read_data("./Day05 - Print Queue/data.txt")
-#@time part_one(updates, rules)
-#@time part_two(updates, rules)
-
-using BenchmarkTools
-@benchmark part_two(updates, rules)
+@time part_one(updates, rules)
+@time part_two(updates, rules)
