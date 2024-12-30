@@ -12,37 +12,12 @@ This day was solved easily with regex. Learned how to use regex in Julia and how
 ## Day 4: Ceres Search
 Day 4 was a xmas mess. Not that the problems were that hard, just that my solution was tedious. You are given a matrix with characters and want to search for the word XMAS written in different directions. Solved both part one and part two by iterating through thea matrix looking for patterns using conditional statements. Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
 
-
 ## Day 5: Print Queue
 You are given a set of rules that defines an order of numbers in a sequence and a list of number sequences. Learned about anonymous functions as arguments. 
-### Part one
-In part one you're asked to check if the number sequences follow the ordering rules.
-```
-BenchmarkTools.Trial: 337 samples with 1 evaluation.
- Range (min … max):  13.166 ms …  22.430 ms  ┊ GC (min … max): 22.02% … 44.73%
- Time  (median):     14.789 ms               ┊ GC (median):    26.73%
- Time  (mean ± σ):   14.826 ms ± 822.026 μs  ┊ GC (mean ± σ):  26.64% ±  2.78%
 
-                ▂▃ ▁▄▇▃▇▃▆▄▂▄▆█▅▂▄▄▆▁▃                          
-  ▃▁▃▁▄▆▅▅▅▆▆▆█▇██▆████████████████████▆▇▆▄▅▄▃▁▆▃▃▄▃▁▁▄▄▁▁▁▁▁▃ ▅
-  13.2 ms         Histogram: frequency by time           17 ms <
 
- Memory estimate: 95.55 MiB, allocs estimate: 126748.
-```
-### Part two
-Part two was about using the rulecheking to sort sequences of numbers accordingly to the ordering rules.
-```
-BenchmarkTools.Trial: 112 samples with 1 evaluation.
- Range (min … max):  41.090 ms … 52.355 ms  ┊ GC (min … max): 22.43% … 28.96%
- Time  (median):     44.695 ms              ┊ GC (median):    24.82%
- Time  (mean ± σ):   44.810 ms ±  1.911 ms  ┊ GC (mean ± σ):  25.14% ±  1.50%
 
-              ▂  █▂ ▃▅▆    ▃                                   
-  ▄▄▄▇▄▅▄▁▇▅▇██▇▇██▇█████▇▅█▅▇▄▄▅▇▄▇▁▄▅▁▁▁▁▁▁▁▁▁▄▁▁▁▁▁▁▁▁▁▁▁▄ ▄
-  41.1 ms         Histogram: frequency by time        52.3 ms <
 
- Memory estimate: 303.28 MiB, allocs estimate: 421919.
-```
 
 ## Day 6: Guard Gallivant
 Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.53 s for part to by just switching an array to a set).
