@@ -6,35 +6,8 @@ Staring with two easy problems. You have two lists of locations (numbers) and wa
 ## Day 2: Red-Nosed Reports
 Another day with simple problems. Learned about constructing arrays comprehensiouns ([x for x in y]). I foresee that my code will be less readable from now on. 
 
-
 ## Day 3: Mull It Over
 This day was solved easily with regex. Learned how to use regex in Julia and how to work with matrices.
-### Part one
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  261.500 μs …  10.022 ms  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     277.542 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   310.083 μs ± 304.762 μs  ┊ GC (mean ± σ):  4.25% ± 6.57%
-
-   ▃▇█▃                                                          
-  ▄█████▆▅▄▄▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▁▂▂ ▃
-  262 μs           Histogram: frequency by time          509 μs <
-
- Memory estimate: 230.57 KiB, allocs estimate: 5206.
-```
-### Part two
- ```
- BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  228.250 μs …  15.183 ms  ┊ GC (min … max): 0.00% … 97.77%
- Time  (median):     243.417 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   269.270 μs ± 276.992 μs  ┊ GC (mean ± σ):  2.69% ±  4.82%
-
-   ▅██▃                                                          
-  ▅█████▆▅▅▄▃▃▃▃▂▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▂▂▂▁▂▂ ▃
-  228 μs           Histogram: frequency by time          478 μs <
-
- Memory estimate: 118.68 KiB, allocs estimate: 2182.
- ```
 
 ## Day 4: Ceres Search
 Day 4 was a xmas mess. Not that the problems were that hard, just that my solution was tedious. You are given a matrix with characters and want to search for the word XMAS written in different directions. Solved both part one and part two by iterating through thea matrix looking for patterns using conditional statements. Learned about the shorthand condition && dothisiftrue. My code will from now on be even less readable. 
