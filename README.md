@@ -15,40 +15,12 @@ Day 4 was a xmas mess. Not that the problems were that hard, just that my soluti
 ## Day 5: Print Queue
 You are given a set of rules that defines an order of numbers in a sequence and a list of number sequences. Learned about anonymous functions as arguments. 
 
-
-
-
-
 ## Day 6: Guard Gallivant
-Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.53 s for part to by just switching an array to a set).
-### Part  one
-Part one was about walking about in a matrix turning 90 degrees to the right if you encounter an obstacle, solved by walking step by step. The solution could be sped up by determining how many steps you can take before you encounter a obstacle and mark all these as visited, something that I'd be able to do easily in R.
-```
-BenchmarkTools.Trial: 611 samples with 1 evaluation.
- Range (min … max):  7.846 ms … 58.054 ms  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     8.012 ms              ┊ GC (median):    0.00%
- Time  (mean ± σ):   8.155 ms ±  2.126 ms  ┊ GC (mean ± σ):  0.17% ± 1.44%
+Learned about using tuples and unpacking tuples returned from functions. Also learned that sometimes sets are much more efficient (went from ~ 18 s to ~ 0.5 s for part to by just switching an array to a set).
 
-    ▃█▆                                                       
-  ▃▅████▅▄▃▃▃▄▅▇██▇▆▆▅▅▄▅▃▃▃▃▃▁▂▁▁▁▂▁▃▁▂▂▁▁▁▂▁▁▂▁▂▁▁▂▁▁▁▁▁▁▂ ▃
-  7.85 ms        Histogram: frequency by time        8.81 ms <
 
- Memory estimate: 243.71 KiB, allocs estimate: 24.
-```
-### Part two
-Part two was a bit trickier, now we're looking to create an infinite loop in the path from part one by adding an additional obstacle. Solved by iterating through the path visited in part one checking what would happend if there was an obstacle added there. So basically brute-forcing the problem.
-```
-BenchmarkTools.Trial: 9 samples with 1 evaluation.
- Range (min … max):  559.134 ms … 608.687 ms  ┊ GC (min … max): 11.16% … 15.30%
- Time  (median):     571.955 ms               ┊ GC (median):    12.11%
- Time  (mean ± σ):   574.256 ms ±  14.771 ms  ┊ GC (mean ± σ):  12.19% ±  1.34%
 
-  █  █ █        ██   █ █    █                                 █  
-  █▁▁█▁█▁▁▁▁▁▁▁▁██▁▁▁█▁█▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█ ▁
-  559 ms           Histogram: frequency by time          609 ms <
 
- Memory estimate: 2.21 GiB, allocs estimate: 109633.
-```
 
 ## Day 7: Bridge Repair
 Another easy day if you have a lot of processor to work with. Build a tree with numbers based on a set of possible permutations of operators. Learned about using recursive functions and first class functions. 
