@@ -27,40 +27,13 @@ Learned about unpacking tuples in anonymous functions.
 ## Day 9: Disk Fragmenter
 Learned to not rely too much on recursion instead iterating through arrays and about how to benchmark and time function calls.
 
-
-
-
-
 ## Day 10: Hoof It
-Two easy problems. Given a height map and a set of starting positions map out paths that increases one level in elevation for each step. Didn't learn anything new today. =(
-### Part one
-For part one count the number of reachable peak positions for each starting position. Solved using DFS.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  299.708 μs …  10.783 ms  ┊ GC (min … max): 0.00% … 66.79%
- Time  (median):     325.854 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   377.106 μs ± 304.205 μs  ┊ GC (mean ± σ):  8.51% ± 13.18%
+Learned that the ∉ operator can be costly.
 
-  ▆█▆▅▄▃▂▂▁▁                                                    ▂
-  ████████████▇▇▇▅▅▅▁▄▃▃▁▁▃▃▃▃▁▃▁▁▃▁▁▁▁▁▃▆▆▆███▇▇▆▆▄▄▄▃▄▅▆▆▆███ █
-  300 μs        Histogram: log(frequency) by time       1.22 ms <
 
- Memory estimate: 867.20 KiB, allocs estimate: 8993.
-```
-### Part two
-For part two find how many unique paths there are between the starting positions and peak positions. Solved using DFS.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):  274.583 μs …  10.199 ms  ┊ GC (min … max): 0.00% … 96.33%
- Time  (median):     297.417 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   346.543 μs ± 273.812 μs  ┊ GC (mean ± σ):  8.95% ± 13.31%
 
-  ▇█▆▅▄▂▂▁▁                                                     ▂
-  ███████████▇▇▇▆▅▅▅▄▃▁▁▃▃▁▃▄▁▁▃▁▁▁▁▁▁▁▁▃▁▃▁▁▄▆▇▇██▇▇▆▆▅▃▆▆▇███ █
-  275 μs        Histogram: log(frequency) by time       1.17 ms <
 
- Memory estimate: 829.38 KiB, allocs estimate: 8067.
-```
+
 
 ## Day 11: Plutonian Pebbles
 You start with a set of numbers. Each number will evolve according to a few rules, some of these rules will increase the number and others will split the number into two. You are required to iterate through these evolutions and then count the number of numbers you have at the end. 
