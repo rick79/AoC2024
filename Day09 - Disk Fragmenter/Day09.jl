@@ -77,10 +77,8 @@ function part_two(fs::Vector{Tuple{Int, Int, Bool}})
     println("Part Two: $res")
 end
 
-using BenchmarkTools
+
 #data = read_data("./Day09 - Disk Fragmenter/test.txt")
 data = read_data("./Day09 - Disk Fragmenter/data.txt")
-#@time part_one(data)
-#@time part_two(data)
-
-@benchmark part_two(data)
+@time part_one(data)
+@time part_two(data)
