@@ -30,43 +30,12 @@ Learned to not rely too much on recursion instead iterating through arrays and a
 ## Day 10: Hoof It
 Learned that the ∉ operator can be costly.
 
-
-
-
-
-
 ## Day 11: Plutonian Pebbles
-You start with a set of numbers. Each number will evolve according to a few rules, some of these rules will increase the number and others will split the number into two. You are required to iterate through these evolutions and then count the number of numbers you have at the end. 
+Learned to RTFM ;)
 
-### Part one
-For part one iterate 25 times. This was easy to brute force, but since the solution for part two works just as well for part one I used my latter solution here instead.
 
-```
-BenchmarkTools.Trial: 6923 samples with 1 evaluation.
- Range (min … max):  558.708 μs …  16.380 ms  ┊ GC (min … max): 0.00% …  0.00%
- Time  (median):     609.083 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   716.147 μs ± 562.307 μs  ┊ GC (mean ± σ):  9.21% ± 14.15%
 
-  ▆█▇▅▄▂▂▁▁                                                     ▂
-  ████████████▇▇▆▃▄▅▄▄▃▃▁▁▄▁▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▁▄▆▅▇▇██████▇▇▇▆▅▆▆ █
-  559 μs        Histogram: log(frequency) by time       2.21 ms <
 
- Memory estimate: 1.15 MiB, allocs estimate: 15100.
-```
-### Part two
-For part two iterate 75 times. Trying to brute force part two takes forever. Rewrote part one but with recursion and memoization.
-```
-BenchmarkTools.Trial: 199 samples with 1 evaluation.
- Range (min … max):  21.508 ms … 52.767 ms  ┊ GC (min … max):  0.00% … 58.30%
- Time  (median):     24.124 ms              ┊ GC (median):     7.19%
- Time  (mean ± σ):   25.059 ms ±  5.011 ms  ┊ GC (mean ± σ):  10.59% ± 10.03%
-
-   ▁  █▅▃                                                      
-  ▅█▄████▇▆▂▂▂▁▂▁▁▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▃ ▂
-  21.5 ms         Histogram: frequency by time          52 ms <
-
- Memory estimate: 36.93 MiB, allocs estimate: 761936.
-```
 
 ## Day 12: Garden Groups
 Given a garden with square plots represented by a matrix where the values denotes the type of plants. Plants of the same type adjecent to each other forms a region. A region can contain other regions. Calculate the cost for building fences around each region. In part one the cost is calculated by multiplying the region perimeter and area. In part two the cost is calculated by multiply the number of edges for each region with the area. 
