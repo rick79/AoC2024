@@ -24,41 +24,12 @@ Learned about using recursive functions, first class functions and the splat (`.
 ## Day 8: Resonant Collinearity
 Learned about unpacking tuples in anonymous functions.
 
-
-
-
-
-
 ## Day 9: Disk Fragmenter
-Todays problem was defragging a set consisting of numbers and empty spaces beteen numbers. Learned to not rely too much on recursion and iterating through arrays. And learned how to benchmark and time function calls.
-### Part one
-In part one you just move the numbers at the back forwards to empty slots.
-```
-BenchmarkTools.Trial: 109 samples with 1 evaluation.
- Range (min … max):  45.138 ms …  50.153 ms  ┊ GC (min … max): 0.00% … 7.38%
- Time  (median):     45.909 ms               ┊ GC (median):    0.00%
- Time  (mean ± σ):   46.036 ms ± 773.324 μs  ┊ GC (mean ± σ):  0.86% ± 1.34%
+Learned to not rely too much on recursion instead iterating through arrays and about how to benchmark and time function calls.
 
-  ▃ ▂ █   ▂  ▂ ▂▂ ▂   ▂                                         
-  █████▄▇█████▇████▅▅▅█▅▇▇▄▅▄▁▁▅▁▄▁▄▁▁▄▁▁▁▁▄▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▄ ▄
-  45.1 ms         Histogram: frequency by time         48.9 ms <
 
- Memory estimate: 7.88 MiB, allocs estimate: 245509.
-```
-### Part two
-In part two you move entire series of the same number at a time to the first empty slot of appropiate size.
-```
-BenchmarkTools.Trial: 7 samples with 1 evaluation.
- Range (min … max):  820.639 ms … 825.777 ms  ┊ GC (min … max): 0.55% … 0.73%
- Time  (median):     824.198 ms               ┊ GC (median):    0.72%
- Time  (mean ± σ):   823.908 ms ±   1.800 ms  ┊ GC (mean ± σ):  0.64% ± 0.21%
 
-  █                       █        █        █           ██    █  
-  █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁██▁▁▁▁█ ▁
-  821 ms           Histogram: frequency by time          826 ms <
 
- Memory estimate: 109.85 MiB, allocs estimate: 3598905.
-```
 
 ## Day 10: Hoof It
 Two easy problems. Given a height map and a set of starting positions map out paths that increases one level in elevation for each step. Didn't learn anything new today. =(
