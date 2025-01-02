@@ -33,40 +33,12 @@ Learned that the ∉ operator can be costly.
 ## Day 11: Plutonian Pebbles
 Learned to RTFM ;)
 
-
-
-
-
 ## Day 12: Garden Groups
-Given a garden with square plots represented by a matrix where the values denotes the type of plants. Plants of the same type adjecent to each other forms a region. A region can contain other regions. Calculate the cost for building fences around each region. In part one the cost is calculated by multiplying the region perimeter and area. In part two the cost is calculated by multiply the number of edges for each region with the area. 
-### Part one
-Part one was easily solved with flood fill for calculating the area and at the same time for each filled plot counting the number of adjecent plots with another type of plant. Find the first non-processed region, calculate the cost, set the plots of the region as processed. Repeat until no more non-procesed plots exist. Learned how to use BenchmarkTools.
-```
-BenchmarkTools.Trial: 435 samples with 1 evaluation.
- Range (min … max):  10.801 ms … 46.986 ms  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     11.110 ms              ┊ GC (median):    0.00%
- Time  (mean ± σ):   11.498 ms ±  1.940 ms  ┊ GC (mean ± σ):  2.45% ± 5.13%
+Learned how to use BenchmarkTools, and when refactoring my code how to work with CartesianIndex instead of tuples.
 
-  ▅▆▇█▆▄▃             ▃▂▂                                      
-  ███████▅▄▆▆▁▄▄▄▁▁███████▄▄▄▅▁▁▁▁▁▁▁▁▁▁▁▁▄▁▁▄▁▁▁▁▁▁▁▁▁▄▁▁▁▁▄ ▇
-  10.8 ms      Histogram: log(frequency) by time      15.6 ms <
 
- Memory estimate: 5.65 MiB, allocs estimate: 28427.
- ```
-### Part two
-Part two was trickier. Find the first non-processed region. Calculation the area as above. To calculate the number of edges begin from the top and iterate top down and left to right: if the plot has another type of plants than the previous plot and the plot above has another type of plats it has an edge; if it has the same type of plats as the previous, the plot above has another type of plant and the plot diagonally to the upper left side of the plot has the same type of plats it has an edge.  Rotate the garden by 90°. Repeat 4 times. Multiply the perimeter with the area. Getting the last part with the diagonally adjecent plot right took too much time. 
-```
-BenchmarkTools.Trial: 63 samples with 1 evaluation.
- Range (min … max):  72.346 ms … 95.831 ms  ┊ GC (min … max): 4.91% … 21.57%
- Time  (median):     78.718 ms              ┊ GC (median):    7.27%
- Time  (mean ± σ):   79.469 ms ±  4.053 ms  ┊ GC (mean ± σ):  8.04% ±  2.98%
 
-               ▂ ▂▅▂█   ▅▂ ▂ ▂  ▅                              
-  ▅▅▁▁▅█▅▁▁█▅█▁█▅█████▁███▅█▅█▅▅█▅▅▅▁▁▁▁▁▁▅▁▁▁▁▁▅▁▅▁▁▁▁▁▁▁▁▁▅ ▁
-  72.3 ms         Histogram: frequency by time        91.4 ms <
 
- Memory estimate: 149.92 MiB, allocs estimate: 34205.
-```
 
 ## Day 13: Claw Contraption
 You're playing with a claw machine and can describe the claws motion as a system with two linear equations: ay<sub>1</sub> + by<sub>2</sub> = c<sub>1</sub> and ax<sub>1</sub>+bx<sub>2</sub>=c<sub>2</sub>. You move the claw by pushing one of two buttons (a and b) and it moves by y<sub>1</sub>, x<sub>1</sub> or y<sub>2</sub>, x<sub>2</sub> depending on which button you press. For each claw machine you have a target coordinate c<sub>1</sub>, c<sub>2</sub> that you want to reach. Solve for integer solutions.
