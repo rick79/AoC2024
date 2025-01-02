@@ -51,40 +51,9 @@ Got to implement Dijkstras algorithm
 ## Day 17: Chronospatial Computer
 Fun problems, but didn't learn anything new.
 
-
-
-
-
 ## Day 18: RAM Run
-You are in a computer(?) and need to navigate through it's degrading memory. Each nanosecond a destructive byte falls down corrupting a memory location (blocking it). You need to simulate the bytes that has fallen after 1024 nanoseconds and find the shortest path from the start to the end of the memory.
-### Part one
-In part one you just need to find the shortest path from the start to end after 1024 bytes has been corrupted. This is a grid problem that doesn't need a grid! The bytes are already stored in a list in the order they fall. This makes it easy, we can just consider the first 1024 entries in the list and then find the shortest path checking so that we don't enter a currupted location. I implemented this as a BFS, storing the path when reaching the end.
-```
-BenchmarkTools.Trial: 105 samples with 1 evaluation.
- Range (min … max):  44.016 ms … 60.763 ms  ┊ GC (min … max): 21.44% … 33.20%
- Time  (median):     47.443 ms              ┊ GC (median):    23.92%
- Time  (mean ± σ):   47.636 ms ±  1.738 ms  ┊ GC (mean ± σ):  24.13% ±  1.43%
+Didn't learn anything new =\
 
-                    ▁  ▁   ▄  █▄▁  ▅                           
-  ▃▁▁▁▁▃▁▃▁▁▁▃▁▃▁▁▃▁█▆██▃▆▁██▆████▆█▆▅▅▃▆▅▁▅▅▃▁▅▃▁▃▃▁▁▁▁▃▁▁▃▃ ▃
-  44 ms           Histogram: frequency by time          51 ms <
-
- Memory estimate: 294.04 MiB, allocs estimate: 54579.
- ```
-### Part two 
-In part two we need to find out how many locations that can be corrupted after 1024 nanoseconds before all paths to the exit are closed. I used the same BFS as for part one. When I had a path I checked for the first corrupted location that would block this path, calulated a new path, and then continued checking the next location to be corrupted and so on. I am not happy with this solution, it takes about 2 seconds to run and allocates too much memory. Perhaps the solution from day 16 would work to find all paths between start and stop and then remove paths based on corrupted locations.
-```
-BenchmarkTools.Trial: 3 samples with 1 evaluation.
- Range (min … max):  1.969 s …   2.120 s  ┊ GC (min … max): 25.43% … 28.03%
- Time  (median):     2.032 s              ┊ GC (median):    26.07%
- Time  (mean ± σ):   2.040 s ± 75.805 ms  ┊ GC (mean ± σ):  26.54% ±  1.36%
-
-  █                      █                                █  
-  █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█ ▁
-  1.97 s         Histogram: frequency by time        2.12 s <
-
- Memory estimate: 14.19 GiB, allocs estimate: 1670302.
-```
 
 ## Day 19: Linen Layout
 After yesterdays headache todays easier problems was welcome. You want to sort out towels made from different arrangements of patterns. As puzzle input you are given the available patterns and a list of designs. Both the patterns and designs are made of the characters w, u, b, r, and g.
