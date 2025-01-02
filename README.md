@@ -68,7 +68,10 @@ Really fun problem, but didn't learn anything new =[
 Didn't learn anything new today either ={
 
  ## Day 23:
+ Learned about the Momoization library (and didn't use it because of the overhead)
 
  ## Day 24:
+ Learned to never give up ;)
 
  ## Day 25:
+ Didn't learn anything new =|

@@ -1,56 +1,32 @@
-using Memoization
-
 function read_data(path::String)
-    return [Tuple(string.(split(l, "-"))) for l ∈ readlines(path)]
-end
-
-struct Edge 
-    from::String
-    to::String
-    dir::Bool
-end
-
-struct Graph
-    vertices::Set{String}
-    edges::Vector{Edge}
-end
-
-
-function make_graph_from_edges(t::Vector{Tuple{String, String}})
-    vertices = Set{String}()
-    edges = Vector{Edge}()
-    for (a, b) ∈ t
-        push!(edges, Edge(a, b, false))
-        push!(vertices, a)
-        push!(vertices, b)
+    edges = Dict{String, Set{String}}()
+    for line ∈ readlines(path)
+        ft = split(line, "-")
+        e = get(edges, ft[1], Set{String}())
+        push!(e, ft[2])
+        edges[ft[1]] = e
+        e = get(edges, ft[2], Set{String}())
+        push!(e, ft[1])
+        edges[ft[2]] = e
     end
-    return Graph(vertices, edges)
+    return edges
 end
 
-@memoize function find_edges(G::Graph, from::String)
-    return filter(f->f.from == from || f.to == from, G.edges)
+function has_edge(edges::Dict{String, Set{String}}, from::String, to::String)
+    return haskey(edges, from) && to ∈ edges[from]
 end
 
-@memoize function find_edges(G::Graph, from::String, to::String)
-    return filter(f->(f.from == from && f.to == to) || (!f.dir && f.from == to  && f.to == from), G.edges)
+function find_connected_vertices(edges::Dict{String, Set{String}}, v::String)
+    return get(edges, v, Set{String})
 end
 
-@memoize function has_edge(G::Graph, from::String, to::String)
-    return length(filter(f->(f.from == from && f.to == to) || (!f.dir && f.from == to  && f.to == from), G.edges)) > 0
-end
-
-@memoize function find_connected_vertices(G::Graph, v::String)
-    return vcat([v.to for v ∈ filter(f->f.from == v, G.edges)], [v.from for v ∈ filter(f->f.to == v, G.edges)])
-end
-
-function part_one(data::Vector{Tuple{String, String}})
-    G = make_graph_from_edges(data)
+function part_one(edges::Dict{String, Set{String}})
     permutations = Set{Set{String}}()
-
-    for a ∈ G.vertices
-        for b ∈ G.vertices
-            for c ∈ G.vertices
-                if has_edge(G, a, b) && has_edge(G, a, c) && has_edge(G, b, c)
+    vertices = string.(keys(edges))
+    for (ia, a) ∈ enumerate(vertices)
+        for (ib, b) ∈ enumerate(vertices[ia:end])
+            for c ∈ vertices[ib:end]
+                if has_edge(edges, a, b) && has_edge(edges, a, c) && has_edge(edges, b, c)
                     push!(permutations, Set([a b c]))
                 end
             end
@@ -60,22 +36,23 @@ function part_one(data::Vector{Tuple{String, String}})
     for p ∈ permutations
         res += sum(any([e[1] == 't' for e ∈ p]))
     end
+    @assert res == 1175
     println("Part One: $res")
 end
 
-function part_two(data::Vector{Tuple{String, String}})
-    G = make_graph_from_edges(data)
+function part_two(edges::Dict{String, Set{String}})
     password = ""
     l = 0
-    for v ∈ G.vertices
+    vertices = string.(keys(edges))
+    for v ∈ vertices
         group = Set{String}([v])
         que = Vector{String}()
-        for e ∈ find_edges(G, v)
-            push!(que, e.from == v ? e.to : e.from)
+        for e ∈ edges[v]
+            push!(que, e)
         end
-        while length(que) > 0
+        while !isempty(que)
             u = pop!(que)
-            if all([has_edge(G, u, w) for w ∈ group])
+            if all([has_edge(edges, u, w) for w ∈ group])
                 push!(group, u)
             end
         end
@@ -84,11 +61,12 @@ function part_two(data::Vector{Tuple{String, String}})
             l = length(group)
         end
     end
+    @assert password == "bw,dr,du,ha,mm,ov,pj,qh,tz,uv,vq,wq,xw"
     println(password)
 end
 
-Memoization.empty_all_caches!()
-data = read_data("./Day23 - LAN Party/data.txt")
 #data = read_data("./Day23 - LAN Party/test.txt")
-#@time part_one(data)
+data = read_data("./Day23 - LAN Party/data.txt")
+
+@time part_one(data)
 @time part_two(data)
