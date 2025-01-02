@@ -40,7 +40,7 @@ Learned to RTFM ;)
 Learned how to use BenchmarkTools, and when refactoring my code how to work with CartesianIndex instead of tuples.
 
 ## Day 13: Claw Contraption
-Learned how to use structs and mutable structs. Alsp found an interesting behaviour for matrix division where `A\b´ surprisingly didn't work that well since there seemed to be a very small error when doing this calculation for one of the machines in the test data.
+Learned how to use structs and mutable structs. Alsp found an interesting behaviour for matrix division where `A\b` surprisingly didn't work that well since there seemed to be a very small error when doing this calculation for one of the machines in the test data.
 
 ## Day 14: Restroom Redoubt
 Learned about file IO.
