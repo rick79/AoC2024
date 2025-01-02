@@ -17,18 +17,17 @@ end
 
 
 function part_one(height::Int, keys::Vector{Vector{Int}}, locks::Vector{Vector{Int}})
-    counter = 0
+    res = 0
     for lock ∈ locks
         for key ∈ keys
-            all(f->f<=0 , ((lock+key) .- height)) && (counter += 1)
+            all(f->f<=0 , ((lock+key) .- height)) && (res += 1)
         end
     end
-    @assert counter == 2900
-    println("Part One: $counter")
+    @assert res == 2900
+    println("Part One: $res")
 end
 
 #(h, k, l) = read_data("./Day25 - Code Chronicle/test.txt")
 (h, k, l) = read_data("./Day25 - Code Chronicle/data.txt")
 
 @time part_one(h, k, l)
-
