@@ -324,4 +324,3 @@ y37 XOR x37 -> wpp
 ```
 
 This gives that the paris involved are: wpd, z11, skh, jqf, z19, mdd, wts, and z37. Sorted this becomes: jqf,mdd,skh,wpd,wts,z11,z19,z37.
-
