@@ -36,40 +36,13 @@ Learned to RTFM ;)
 ## Day 12: Garden Groups
 Learned how to use BenchmarkTools, and when refactoring my code how to work with CartesianIndex instead of tuples.
 
-
-
-
-
 ## Day 13: Claw Contraption
-You're playing with a claw machine and can describe the claws motion as a system with two linear equations: ay<sub>1</sub> + by<sub>2</sub> = c<sub>1</sub> and ax<sub>1</sub>+bx<sub>2</sub>=c<sub>2</sub>. You move the claw by pushing one of two buttons (a and b) and it moves by y<sub>1</sub>, x<sub>1</sub> or y<sub>2</sub>, x<sub>2</sub> depending on which button you press. For each claw machine you have a target coordinate c<sub>1</sub>, c<sub>2</sub> that you want to reach. Solve for integer solutions.
-### Part one
-I must admit that I didn't read the instructions that well before I started so I didn't see that the problem was a system of linear equations before I already had solved part one using loops. Firstly I rewrote the system as matrix A and the target point as a vector b and solved the system using `A\b´. Surprisingly this didn't work that well since there seems to be a very small error when doing this calculation for one of the machines in the test data. But since it is a very small system with only two unknowns it was easy to use substitution to solve it.
-```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation.
- Range (min … max):   51.500 μs …   3.113 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):      75.188 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   386.939 μs ± 31.130 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
+Found an interesting behaviour for matrix division where `A\b´ surprisingly this didn't work that well since there seemed to be a very small error when doing this calculation for one of the machines in the test data.
 
-                 ▁▂▃▄▃▂▁▁▂█▇▁                                   
-  ▂▂▃▃▅▅▇▆▆▆▆▆▆▆▇█████████████▆▅▄▃▃▃▂▂▂▂▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▃
-  51.5 μs         Histogram: frequency by time          122 μs <
 
- Memory estimate: 2.84 KiB, allocs estimate: 14.
-```
-### Part two
-In part two coordinates for the target points are increased by 10 000 000 000 000. Using loops for this is prohibitive, but luckily solving the linear system with these larger target coordinates works just the same as for the orginal target coordinates. The runtime for part one and part two should'nt differ, but I had to copy my array with claw machines when running the benchmark tests since I modify the target coordinates for part two.
-```
-BenchmarkTools.Trial: 4024 samples with 1 evaluation.
- Range (min … max):  145.292 μs …    6.500 s  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     163.416 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):     1.809 ms ± 102.463 ms  ┊ GC (mean ± σ):  0.33% ± 4.28%
 
-  ▅█▆▅▃▂▁                                                       ▁
-  █████████▇▇▆▆▆▃▄▅▅▆▄▅▄▅▁▃▃▄▁▅▃▅▃▅▅▃▄▁▁▄▁▁▃▁▅▃▄▄▃▁▁▄▃▃▃▁▃▁▃▃▃▃ █
-  145 μs        Histogram: log(frequency) by time        777 μs <
 
- Memory estimate: 95.14 KiB, allocs estimate: 2204.
-```
+
 
 ## Day 14: Restroom Redoubt
 You are in a bathroom at Easter Bunny HQ that is being patrolled by a swarm of robots that each have a position and velocity. You need to find out where the robots will be in the future. You are given the rooms height and width and a list of robots (with y, x, Δy/s, and Δx/s). Simulate where the robots will be after a given amount of time has passed. Robots that move outside the confines of the room teleport to the other side of the room.
