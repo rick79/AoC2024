@@ -65,7 +65,7 @@ Found something weird, if I used CartesianIndex in a vector comprehension the ru
 Really fun problem, but didn't learn anything new =[
 
  ## Day 22:
-
+Didn't learn anything new today either ={
 
  ## Day 23:
 

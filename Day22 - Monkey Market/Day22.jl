@@ -28,6 +28,7 @@ function part_one(data::Vector{Int})
         end
         res += m
     end
+    @assert res == 17262627539
     println("Part One: $res")            
 end
 
@@ -51,8 +52,8 @@ function part_two(data::Vector{Int})
             push!(ck, k)
         end
     end
-    
     res = maximum([sum([get(c, k, 0) for c ∈ ccl]) for k ∈ ck])
+    @assert res == 1986
     println("Part Two: $res")
 end
 
@@ -61,5 +62,3 @@ end
 data = read_data("./Day22 - Monkey Market/data.txt")
 @time part_one(data)
 @time part_two(data)
-
-# 1587 Too low
