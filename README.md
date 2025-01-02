@@ -49,35 +49,7 @@ Todays problems should be called the Adventures of Lolo! Didn't learn anything n
 
 
 ## Day 16: Reindeer Maze
-Another grid problem! You have a maze and want to find the shortest path from the start to the exit. Taking one step costs 1, turning 90° costs 1000. This makes the maze a weighted graph.
-### Part one
-I haven't done Dijkstra's algorithm in Julia yet! I implemented an more or less textbook version of Dijkstras and a weight function that takes the direction you're facing and the direction you want to move in and returns the cost (1 or 1001). Could probably have optimised it by not storing the distance to every node. Since each node is identified by it's position in the grid and your facing we have to check the shortest distance to the end position coming from every direction.
-```
-BenchmarkTools.Trial: 10 samples with 1 evaluation.
- Range (min … max):  512.559 ms … 576.512 ms  ┊ GC (min … max): 24.28% … 31.23%
- Time  (median):     520.959 ms               ┊ GC (median):    25.51%
- Time  (mean ± σ):   536.426 ms ±  26.840 ms  ┊ GC (mean ± σ):  26.97% ±  3.06%
 
-  ▁█▁ ▁      ▁                              ▁     ▁      ▁    ▁  
-  ███▁█▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁█▁▁▁▁▁▁█▁▁▁▁█ ▁
-  513 ms           Histogram: frequency by time          577 ms <
-
- Memory estimate: 3.11 GiB, allocs estimate: 1540987.
-```
-### Part two
-In part two you want to find all positions in the grid that lies on a shortest path (there can be several shortest paths with the same length). I kept the path leading up to each position and appended it along with the path distance to a list of paths when reaching the end position. I then constructed a set of the positions with the shortest path distance and counted the number of elements in the set.
-```
-BenchmarkTools.Trial: 9 samples with 1 evaluation.
- Range (min … max):  553.057 ms … 608.418 ms  ┊ GC (min … max): 29.60% … 35.53%
- Time  (median):     591.316 ms               ┊ GC (median):    31.41%
- Time  (mean ± σ):   586.232 ms ±  18.936 ms  ┊ GC (mean ± σ):  32.33% ±  2.22%
-
-  █             █      █          █         █    █ █         ██  
-  █▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁█▁▁▁▁█▁█▁▁▁▁▁▁▁▁▁██ ▁
-  553 ms           Histogram: frequency by time          608 ms <
-
- Memory estimate: 3.11 GiB, allocs estimate: 1541011.
-```
 
 ## Day 17: Chronospatial Computer
 This day's problem is about debugging/simulating a 3 bit computer. The computer has 3 registers that can contain arbitrarily large numbers, a memory that stores a sequence of 3 bit numbers, and an output buffer. The computer has 8 instructions that are identified by a 3 bit number opcode and has a 3 bit number operand. The instructions either operate on the registers and/or operand, jumps to a new location in memory and continue executing the program from there, or outputs a register to the output buffer. When running a program the computer reads two three bit numbers from memory, the first denoting the instruction and the second the operand, and executes the instruction. You are given an initial state for the registers and the program stored in the memory.
@@ -279,41 +251,11 @@ You are at a racetrack with **one** path from start to finish. Both you and your
  ```
 
  ## Day 21:
- ### Part one
- ```
- ```
- ### Part two
- ```
- ```
 
  ## Day 22:
- ### Part one
- ```
- ```
- ### Part two
- ```
- ```
 
  ## Day 23:
- ### Part one
- ```
- ```
- ### Part two
- ```
- ```
 
  ## Day 24:
- ### Part one
- ```
- ```
- ### Part two
- ```
- ```
 
  ## Day 25:
- ### Part one
- ```
- ```
- ### Part two
- ```
- ```
