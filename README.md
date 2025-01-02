@@ -39,78 +39,9 @@ Learned how to use BenchmarkTools, and when refactoring my code how to work with
 ## Day 13: Claw Contraption
 Learned how to use structs and mutable structs. Alsp found an interesting behaviour for matrix division where `A\b´ surprisingly didn't work that well since there seemed to be a very small error when doing this calculation for one of the machines in the test data.
 
-
-
-
-
-
 ## Day 14: Restroom Redoubt
-You are in a bathroom at Easter Bunny HQ that is being patrolled by a swarm of robots that each have a position and velocity. You need to find out where the robots will be in the future. You are given the rooms height and width and a list of robots (with y, x, Δy/s, and Δx/s). Simulate where the robots will be after a given amount of time has passed. Robots that move outside the confines of the room teleport to the other side of the room.
-### Part one
-The first part was pretty straigt forward. Simulate where the robots are after 100 seconds and calculate a score based on the multiple of robots in each quadrant of the room. Robots that are in the middle horizontal and vertical lines does not count. Just increase each robots position with the velocity * number of seconds (100). Take the y component modulo the height and the x component modulo the width to account for robots moving of the right and bottom edges. If a robot has a negative position move it to the other side of the room to account for robots moving of the top and left edges. Calulate the score by multiplying the number of robots in each quadrant of the room discounting robots that are on either of the middle lines.
-```
-BenchmarkTools.Trial: 7911 samples with 1 evaluation.
- Range (min … max):  173.000 μs …   3.214 s  ┊ GC (min … max): 0.00% …  0.00%
- Time  (median):     196.375 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   628.057 μs ± 36.133 ms  ┊ GC (mean ± σ):  3.05% ± 11.07%
+Learned about file IO.
 
-  ▇█▆▅▃▂▁                                                      ▁
-  █████████▇▇▆▆▆▃▄▁▄▁▁▄▁▁▁▁▅▄▅▃▃▄▁▁▁▄▆▃▄▄▃▁▁▃▄▄▅▄▅▅▆▄▅▅▄▄▄▄▄▄▃ █
-  173 μs        Histogram: log(frequency) by time      1.08 ms <
-
- Memory estimate: 320.10 KiB, allocs estimate: 1948.
-```
-### Part two
-Part two was trickier. Now you want to know how many seconds have to pass for the majority of the robots to form a christmas tree. Without knowing how they form the tree (large tree, small tree, edges of a tree, filled tree, etc). My first solution was to output the first 10 000 iterations to a file and manually inspect the contents for something that looked like a tree. It worked. Knowing how the tree looked my next solution was to calcuate an adjecency score for a a given state where each robot adds 0 - 4 to the score depending on how many directions there are another robot in. Then I looped through the first 10 000 iterations looking for the highest adjecency score. You could probably take a sample and calculate a mean adjecency score and look for scores that are significantly larger than this to not have to loop through so many iterations.
-
-Looking at how others have solved part two many seems to have assumed that either each robots will have a unique position or that several robots will line up vertically or horizontally when the form the tree. Both ways work, but they are hail maries when it comes to reasoning. Some have used the Chinese Remainder-Theorem to calculate the number of seconds after finding that the robots repeat their y and x positions every 101 respective 103 seconds. This is a much nicer solution but you still need to find these intervalls. Others have calculated a mean standard deviation for the robots positions and used this to find a time where the deviation differs a lot.
-```
-1111111111111111111111111111111
-1                             1
-1                             1
-1                             1
-1                             1
-1              1              1
-1             111             1
-1            11111            1
-1           1111111           1
-1          111111111          1
-1            11111            1
-1           1111111           1
-1          111111111          1
-1         11111111111         1
-1        1111111111111        1
-1          111111111          1
-1         11111111111         1
-1        1111111111111        1
-1       111111111111111       1
-1      11111111111111111      1
-1        1111111111111        1
-1       111111111111111       1
-1      11111111111111111      1
-1     1111111111111111111     1
-1    111111111111111111111    1
-1             111             1
-1             111             1
-1             111             1
-1                             1
-1                             1
-1                             1
-1                             1
-1111111111111111111111111111111
-```
-```
-BenchmarkTools.Trial: 31 samples with 1 evaluation.
- Range (min … max):  153.484 ms … 174.081 ms  ┊ GC (min … max): 26.01% … 31.56%
- Time  (median):     159.929 ms               ┊ GC (median):    28.26%
- Time  (mean ± σ):   161.631 ms ±   4.902 ms  ┊ GC (mean ± σ):  28.36% ±  1.59%
-
-              ▄▁   █      ▁▁                                     
-  ▆▁▁▁▁▁▆▁▁▁▆▆██▆▁▁█▆▆▁▆▁▁██▆▁▁▆▆▁▁▁▁▆▆▁▁▁▆▁▆▁▁▁▁▆▁▁▁▁▁▁▁▁▁▁▁▆▆ ▁
-  153 ms           Histogram: frequency by time          174 ms <
-
- Memory estimate: 795.53 MiB, allocs estimate: 31931.
-```
 
 ## Day 15: Warehouse Woes
 Todays problems should be called the Adventures of Lolo! You start in a warehouse consisting of walls (`#`) and crates (`O` for part one, `[]` for part two) and are given a set of instructions (move up, down, left or right). When you move into a crate you push it. If several crates are lined up you push all of them. You can not move or push a crate into a wall.
