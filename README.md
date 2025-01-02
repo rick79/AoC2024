@@ -42,37 +42,11 @@ Learned how to use structs and mutable structs. Alsp found an interesting behavi
 ## Day 14: Restroom Redoubt
 Learned about file IO.
 
-
 ## Day 15: Warehouse Woes
-Todays problems should be called the Adventures of Lolo! You start in a warehouse consisting of walls (`#`) and crates (`O` for part one, `[]` for part two) and are given a set of instructions (move up, down, left or right). When you move into a crate you push it. If several crates are lined up you push all of them. You can not move or push a crate into a wall.
-### Part one
-My solution for part one was to go through each instruction. For each instruction checking if the space indicated by the instruction is empty, and if it is a crate if the next space in line etc, stoping if encountering a wall. If there is at least one emtpy space in the line of movement push the current position into a que and repeat until the que is empty: pop the last item from the que; if the next space in line is empty, move there; if the next space is a crate push the current position and the crates position to the que.
-```
-BenchmarkTools.Trial: 6095 samples with 1 evaluation.
- Range (min … max):  620.667 μs …  14.201 ms  ┊ GC (min … max):  0.00% …  0.00%
- Time  (median):     665.959 μs               ┊ GC (median):     0.00%
- Time  (mean ± σ):   811.491 μs ± 505.422 μs  ┊ GC (mean ± σ):  14.18% ± 18.35%
+Todays problems should be called the Adventures of Lolo! Didn't learn anything new =/
 
-  ▅█▇▆▅▄▃▂▂▁▁ ▁                         ▂▂▂▂▁   ▁▂▂▂▁           ▂
-  █████████████▇▇▆▇▆▆▃▅▃▅▅▄▃▄▁▁▁▁▁▁▁▁▅▆████████████████▇▇▆▇▇▆▅▆ █
-  621 μs        Histogram: log(frequency) by time       1.69 ms <
 
- Memory estimate: 3.19 MiB, allocs estimate: 34552.
-```
-### Part two
-In part to the warehouse gets twice as wide where walls (`#`) becomes (`##`) and crates (`O`) becomes (`[]`). The solution from part one was easily modified to accomodate for part two. When checking if there is an empty space in the line of movement when moving up or down also consider if the next space is a `[` or a `]`, instead of just checking one line from the current position also check from the positions of `[` and `]`. My original check from part one used a que, for part 2 I changed this to a recursive function that continues checking in a line if it encounters a small crate (`O`) or branches out if it encounters a large crate (either `[]`). When pushing crates crates left or right, just use the same as for part one. When pushing up or down and encounter a large crate (`[]`) push the current position and each of the large crates positions to the que.
-```
-BenchmarkTools.Trial: 5100 samples with 1 evaluation.
- Range (min … max):  730.083 μs …  17.408 ms  ┊ GC (min … max):  0.00% …  0.00%
- Time  (median):     806.417 μs               ┊ GC (median):     0.00%
- Time  (mean ± σ):   970.988 μs ± 617.221 μs  ┊ GC (mean ± σ):  12.33% ± 16.81%
 
-   ▂██▆▅▄▃▂▂▁ ▁▁                   ▂▂▂▂▁▁  ▁▂▂▂▂▁               ▂
-  █████████████████▇▅▆▃▅▅▄▄▃▁▃▃▆▆▆███████▇▇████████▆▆▆▅▆▆▅▃▅▆▅▃ █
-  730 μs        Histogram: log(frequency) by time       1.95 ms <
-
- Memory estimate: 3.40 MiB, allocs estimate: 35949.
-```
 
 ## Day 16: Reindeer Maze
 Another grid problem! You have a maze and want to find the shortest path from the start to the exit. Taking one step costs 1, turning 90° costs 1000. This makes the maze a weighted graph.
