@@ -1,5 +1,8 @@
 # Advent of Code 2024
-Trying to learn Julia this year.
+Trying to learn Julia this year. I hadn't used Julia before but had some familiarity with Matlab and Python.
+
+My goal was to have all solutions running in under about 2 seconds, which I managed except for 3 days (one of them I solved the last part of the puzzle by hand and I need minutes not milliseconds to do things). The day with the least running time was day 13 with part clocking in at 64.583 μs and part two at162.541 μs. The day with the longest running time was day 22 with part one clocking in at 20.195 ms and part two at 5.199 s. Overall pretty happy about my solutions.
+
 ## Day 1: Historian Hysteria
 Learned about broadcasting and working with arrays in Julia. 
 
