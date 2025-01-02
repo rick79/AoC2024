@@ -62,8 +62,10 @@ Didn't learn anything new =(
 Found something weird, if I used CartesianIndex in a vector comprehension the runtime went up from 120 ms to to about 2 s.
 
  ## Day 21:
+Really fun problem, but didn't learn anything new =[
 
  ## Day 22:
+
 
  ## Day 23:
 
