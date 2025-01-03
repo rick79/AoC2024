@@ -3,6 +3,8 @@ Trying to learn Julia this year. I haven't used Julia before but have some famil
 
 My goal was to solve all puzzles with a run time of at most 2 seconds, which I managed except for 3 days (one of them I solved the last part of the puzzle by hand and I need minutes not milliseconds to do things). The day with the least run time time was day 13 with part clocking in at 64.583 μs and part two at 162.541 μs. The day with the longest run time was day 22 with part one clocking in at 20.195 ms and part two at 5.199 s. Overall pretty happy with my solutions.
 
+AoC 2024 can be found at [https://adventofcode.com/2024](https://adventofcode.com/2024)
+
 ## Day 1: Historian Hysteria
 Learned about broadcasting and working with arrays in Julia. 
 
