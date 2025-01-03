@@ -7,22 +7,21 @@ function read_data(path::String)
     return res
 end
 
-function ci2t(ci::CartesianIndex)
-    return !isnothing(ci) ? (ci[1], ci[2]) : nothing
-end
-
 function bfs(y::Int, x::Int, height::Int, width::Int, start::Int, snow::Vector{Tuple{Int, Int}})
+    directions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
     que = Vector{Tuple{Int64, Int64, Int64, Vector{Tuple{Int, Int}}}}()
-    visited = Vector{Tuple{Int64, Int64}}()
+    visited = Set{Tuple{Int64, Int64}}()
     push!(que, (y, x, 0, Vector{Tuple{Int, Int}}()))
-    while length(que) > 0
+    while !isempty(que)
         (y, x, d, p) = popfirst!(que)
         push!(p, (y, x))
-        ((y, x) == (height, width)) && return (d, p)
-        for (Δy, Δx)  ∈ [(-1, 0), (0, -1), (0, 1), (1, 0)]
-            ((y + Δy)  < 0 || (y + Δy) > height || (x + Δx) < 0 || (x + Δx) > width) && continue
-            ((y + Δy, x + Δx) ∈ snow[1:start]) && continue
-            ((y + Δy, x + Δx) ∈ visited) && continue
+        (y == height && x == width) && return (d, p)
+        for (Δy, Δx)  ∈ directions
+            ny = y + Δy
+            nx = x + Δx
+            (ny  < 0 || ny > height || nx < 0 || nx > width) && continue
+            ((ny, nx) ∈ snow[1:start]) && continue
+            ((ny, nx) ∈ visited) && continue
             push!(visited, (y + Δy, x + Δx))
             push!(que, (y + Δy, x + Δx, d + 1, copy(p)))
         end

@@ -112,28 +112,28 @@ Your puzzle answer was `31,22`.
 ### Part one
 In part one you just need to find the shortest path from the start to end after 1024 bytes has been corrupted. This is a grid problem that doesn't need a grid! The bytes are already stored in a list in the order they fall. This makes it easy, we can just consider the first 1024 entries in the list and then find the shortest path checking so that we don't enter a currupted location. I implemented this as a BFS, storing the path when reaching the end.
 ```
-BenchmarkTools.Trial: 105 samples with 1 evaluation.
- Range (min … max):  44.016 ms … 60.763 ms  ┊ GC (min … max): 21.44% … 33.20%
- Time  (median):     47.443 ms              ┊ GC (median):    23.92%
- Time  (mean ± σ):   47.636 ms ±  1.738 ms  ┊ GC (mean ± σ):  24.13% ±  1.43%
+BenchmarkTools.Trial: 126 samples with 1 evaluation.
+ Range (min … max):  36.063 ms … 74.174 ms  ┊ GC (min … max): 28.85% … 59.97%
+ Time  (median):     39.086 ms              ┊ GC (median):    32.42%
+ Time  (mean ± σ):   39.696 ms ±  3.870 ms  ┊ GC (mean ± σ):  33.12% ±  3.28%
 
-                    ▁  ▁   ▄  █▄▁  ▅                           
-  ▃▁▁▁▁▃▁▃▁▁▁▃▁▃▁▁▃▁█▆██▃▆▁██▆████▆█▆▅▅▃▆▅▁▅▅▃▁▅▃▁▃▃▁▁▁▁▃▁▁▃▃ ▃
-  44 ms           Histogram: frequency by time          51 ms <
+        ▃█▄▅▂                                                  
+  ▃▃▄▃███████▆▆▅▆▁▃▁▁▁▁▁▁▃▁▁▃▁▁▁▁▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▃ ▃
+  36.1 ms         Histogram: frequency by time        57.6 ms <
 
- Memory estimate: 294.04 MiB, allocs estimate: 54579.
+ Memory estimate: 293.93 MiB, allocs estimate: 50613.
  ```
 ### Part two 
-In part two we need to find out how many locations that can be corrupted after 1024 nanoseconds before all paths to the exit are closed. I used the same BFS as for part one. When I had a path I checked for the first corrupted location that would block this path, calulated a new path, and then continued checking the next location to be corrupted and so on. I am not happy with this solution, it takes about 2 seconds to run and allocates too much memory. Perhaps the solution from day 16 would work to find all paths between start and stop and then remove paths based on corrupted locations.
+In part two we need to find out how many locations that can be corrupted after 1024 nanoseconds before all paths to the exit are closed. I used the same BFS as for part one. When I had a path I checked for the first corrupted location that would block this path, calulated a new path, and then continued checking the next location to be corrupted and so on. I am not happy with this solution, it takes about 1.8 seconds to run and allocates too much memory. Perhaps the solution from day 16 would work to find all paths between start and stop and then remove paths based on corrupted locations.
 ```
 BenchmarkTools.Trial: 3 samples with 1 evaluation.
- Range (min … max):  1.969 s …   2.120 s  ┊ GC (min … max): 25.43% … 28.03%
- Time  (median):     2.032 s              ┊ GC (median):    26.07%
- Time  (mean ± σ):   2.040 s ± 75.805 ms  ┊ GC (mean ± σ):  26.54% ±  1.36%
+ Range (min … max):  1.742 s …   1.895 s  ┊ GC (min … max): 27.41% … 29.39%
+ Time  (median):     1.794 s              ┊ GC (median):    27.54%
+ Time  (mean ± σ):   1.810 s ± 77.953 ms  ┊ GC (mean ± σ):  28.15% ±  1.10%
 
-  █                      █                                █  
-  █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█ ▁
-  1.97 s         Histogram: frequency by time        2.12 s <
+  █                  █                                    █  
+  █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█ ▁
+  1.74 s         Histogram: frequency by time         1.9 s <
 
- Memory estimate: 14.19 GiB, allocs estimate: 1670302.
+ Memory estimate: 14.19 GiB, allocs estimate: 1548806.
 ```
