@@ -85,7 +85,7 @@ BenchmarkTools.Trial: 8495 samples with 1 evaluation.
  Memory estimate: 642.81 KiB, allocs estimate: 15071.
  ```
  ### Part Two
- In part two you're asked to evolve the stones 75 times. Here the direct approach becomes unsustainable. There is a keyword in the problem description that makes a big difference. You are asked to provide **how many** stones that you will have after 75 blinks, not the sequence of stones in themselves. And an observation: each stone will evolve by itself disregarding other stones around it. So I rewrote my solution to use recursion and a depth first search approach. This allowed me to add memoization and reduce the runtime to something manageable.
+ In part two you're asked to evolve the stones 75 times. Here the direct approach becomes unsustainable. There is a keyword in the problem description that makes a big difference. You are asked to provide **how many** stones that you will have after 75 blinks, not the sequence of stones in themselves. And an observation: each stone will evolve by itself disregarding other stones around it. So I rewrote my solution to use recursion and a depth first search approach. This allowed me to add memoization and reduce the run time to something manageable.
  ```
  BenchmarkTools.Trial: 205 samples with 1 evaluation.
  Range (min … max):  21.788 ms … 33.343 ms  ┊ GC (min … max): 0.00% … 5.82%
