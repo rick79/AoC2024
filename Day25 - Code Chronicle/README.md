@@ -159,4 +159,4 @@ BenchmarkTools.Trial: 1440 samples with 1 evaluation.
  Memory estimate: 11.44 MiB, allocs estimate: 250011.
  ```
 ### Part Two
-Runtime: 28 days.
+Run time: 28 days.
