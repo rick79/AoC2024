@@ -230,7 +230,7 @@ BenchmarkTools.Trial: 2984 samples with 1 evaluation.
  Memory estimate: 258.31 KiB, allocs estimate: 892.
  ```
  ### Part Two
- This part is harder. Brute forcing is not an option (even if the runtime for part one is low). We're given some hints in the problem description: we're dealing with binary adders, there are four pairs of wires that we're looking for, and a gate with the output switched can be in at most one such pair.
+ This part is harder. Brute forcing is not an option (even if the run time for part one is low). We're given some hints in the problem description: we're dealing with binary adders, there are four pairs of wires that we're looking for, and a gate with the output switched can be in at most one such pair.
  
  While we could solve the problem programatically I did it by hand after I identified the interesting parts of the circuit.
 
