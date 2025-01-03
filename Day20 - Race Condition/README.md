@@ -207,7 +207,7 @@ Your puzzle answer was `983054`.
 You are at a racetrack with **one** path from start to finish. Both you and your opponent move one step each picosecond. You are allowed to cheat one time during the race by ignoring walls so that you can move from one part of the track to another. In order to win you have to cheat when it will gain you the maximum benefit. Find how many cheats there are that will gain you at least 100 picoseconds.
  ### Part one
  In part one you are allowed to ignore walls for 2 picoseconds when you cheat. I spent too much time on this problem, the cause: I didn't include the end node when considering to where I could move when cheating. To find the path I used Dijkstras algorithm (again). My first idea was to walk through the track one step at a time and check what would happend if one wall wouldn't be there. While it worked, it took forever to run. My next idea was to walk through the track one step at the time and check where I would end up if I moved two steps in those directions that had walls. This worked better. I then generalised this idea to for each step check what later parts of the track lies within a manhattan distance of 2, I could then calculate the shortcut by subtracking the index of the former from the index of the latter minus the distance of 2 spaces between the two points.
- One funny thing, if I used CartesianIndex in a vector comprehension the runtime went up to about 2 s. Don't know why!?
+ One funny thing, if I used CartesianIndex in a vector comprehension the run time went up to about 2 s. Don't know why!?
  ```
 BenchmarkTools.Trial: 41 samples with 1 evaluation.
  Range (min … max):  110.735 ms … 160.366 ms  ┊ GC (min … max): 27.44% … 48.62%
@@ -221,7 +221,7 @@ BenchmarkTools.Trial: 41 samples with 1 evaluation.
  Memory estimate: 670.17 MiB, allocs estimate: 119130.
  ```
  ### Part two
- In part two the time that you can ignore walls for a cheat is increased to 20 picoseconds. The same solution from part one worked with the addition of finding all latter parts of the path that is within a manhattan distance of no more than 20 and then take the difference between indices minus the manhattan distance between the points. At first this solution took ~10 s to run, but after realising that I already had the indices for all points and thus being able to remove all unnecesary searches for indices and a few other optimisations I managed to reduce the runtime to ~110 ms. Pretty happy about that.
+ In part two the time that you can ignore walls for a cheat is increased to 20 picoseconds. The same solution from part one worked with the addition of finding all latter parts of the path that is within a manhattan distance of no more than 20 and then take the difference between indices minus the manhattan distance between the points. At first this solution took ~10 s to run, but after realising that I already had the indices for all points and thus being able to remove all unnecesary searches for indices and a few other optimisations I managed to reduce the run time to ~110 ms. Pretty happy about that.
  ```
  BenchmarkTools.Trial: 40 samples with 1 evaluation.
  Range (min … max):  101.730 ms … 160.624 ms  ┊ GC (min … max): 20.88% … 46.62%
