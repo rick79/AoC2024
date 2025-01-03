@@ -105,7 +105,7 @@ BenchmarkTools.Trial: 106 samples with 1 evaluation.
  Memory estimate: 7.88 MiB, allocs estimate: 245509.
  ```
 ### Part Two
-In part two you need to move entire files insteand of block by block. I added a flag to each file that tells if it has been processed, initialized to false. The looked for the last unprocessed file. If there are none, we're done. Otherwise find the first empty sequence of empty blocks that have the same or larger size than the file; if there are none just mark the file as processed, otherwise move the file to the empty position and insert a new sequence of empty blocks if needed to preserve the number of blocks. I tried using a dict for storing if the files had been processed but that added about 100 ms of runtime.
+In part two you need to move entire files insteand of block by block. I added a flag to each file that tells if it has been processed, initialized to false. The looked for the last unprocessed file. If there are none, we're done. Otherwise find the first empty sequence of empty blocks that have the same or larger size than the file; if there are none just mark the file as processed, otherwise move the file to the empty position and insert a new sequence of empty blocks if needed to preserve the number of blocks. I tried using a dict for storing if the files had been processed but that added about 100 ms of run time.
 ```
 BenchmarkTools.Trial: 6 samples with 1 evaluation.
  Range (min … max):  841.155 ms … 847.145 ms  ┊ GC (min … max): 0.18% … 0.68%
